@@ -1,0 +1,15 @@
+services:
+  identityserver:
+    build:
+      context: C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom
+      dockerfile: Security/IdentityServer/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: identityserver
+    ports:
+    - target: 80
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+version: '3.4'
+volumes:
+  mssql_data: {}
