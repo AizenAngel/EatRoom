@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tAw6NJ6mtLcnhShyIqme4czryXGsEyfxAWGukEtGBN5UxJAUeV3QcXXoaR9Pfthvl1LGWS0NSaXLN+TnpHwtvg==",
+  "dgSpecHash": "CFvpNWDRo3tnAIlXJoUgx39fwaijMjfOnWmsVmrtQv6eYRYEP+wJE8LdgK3skeubbmNZcfA1y7vMDka0EgVY/A==",
   "success": true,
   "projectFilePath": "C:\\Users\\bozam\\OneDrive\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,7 @@
     "C:\\Users\\bozam\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\bozam\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\bozam\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\bozam\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
     "C:\\Users\\bozam\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\bozam\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\bozam\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
