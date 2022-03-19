@@ -1,4 +1,4 @@
-package com.example.eatroom.data
+package com.example.eatroom.model.data
 
 data class Restaurant(
     val name: String,

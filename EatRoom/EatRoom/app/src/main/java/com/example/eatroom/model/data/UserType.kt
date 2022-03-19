@@ -1,4 +1,4 @@
-package com.example.eatroom.data
+package com.example.eatroom.model.data
 
 enum class UserType {
     USER,
