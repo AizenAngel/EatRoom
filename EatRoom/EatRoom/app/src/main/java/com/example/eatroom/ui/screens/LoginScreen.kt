@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
 import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
@@ -28,14 +29,14 @@ fun LoginScreen(
         Text(text = "Select user type")
         Button(
             onClick = {
-                navigator.navigate(RestaurantScreenDestination())
+                navigator.navigate(RestaurantScreenDestination(UserType.USER))
             }
         ) {
             Text(text = "User")
         }
         Button(
             onClick = {
-                navigator.navigate(RestaurantScreenDestination())
+                navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
             }
         ) {
             Text(text = "Owner")
