@@ -11,13 +11,15 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.NewDishScreenDestination
-import com.example.eatroom.ui.screens.destinations.NewRestaurantScreenDestination
+import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -27,8 +29,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun MenuScreen(
     restaurant: Restaurant,
     navigator: DestinationsNavigator,
-    userType: UserType
+    userType: UserType,
+    viewModel: RestaurantViewModel = hiltViewModel()
 ) {
+    viewModel.setDish(restaurant)
+    val dishes = viewModel.dishes
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -36,8 +41,8 @@ fun MenuScreen(
     ) {
         Text(text = "Menu list for ${restaurant.name}")
         LazyColumn() {
-            items(restaurant.dishes) { dish ->
-                DishCard(dish, userType)
+            items(dishes) { dish ->
+                DishCard(restaurant, dish, userType)
             }
         }
         if (userType == UserType.OWNER) {
@@ -47,7 +52,10 @@ fun MenuScreen(
                 }) {
                     Text(text = "Add menu item")
                 }
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    viewModel.deleteRestaurant(restaurant)
+                    navigator.popBackStack()
+                }) {
                     Text(text = "Delete restaurant")
                 }
             }
@@ -57,8 +65,10 @@ fun MenuScreen(
 
 @Composable
 fun DishCard(
+    restaurant: Restaurant,
     dish: Dish,
-    userType: UserType
+    userType: UserType,
+    viewModel: RestaurantViewModel = hiltViewModel()
 ) {
     Card() {
         Row() {
@@ -72,7 +82,9 @@ fun DishCard(
                 }
             }
             if (userType == UserType.OWNER){
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    viewModel.deleteDish(restaurant, dish)
+                }) {
                     Text(text = "Delete item")
                 }
             }

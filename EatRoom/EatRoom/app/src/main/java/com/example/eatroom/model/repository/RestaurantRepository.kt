@@ -4,7 +4,7 @@ import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
 
 class RestaurantRepository {
-    private val restaurants = mutableListOf<Restaurant>(
+    private val restaurants = mutableListOf(
         Restaurant(
             "Picerija",
             mutableListOf(
@@ -30,6 +30,18 @@ class RestaurantRepository {
     }
 
     fun deleteRestaurant(restaurant: Restaurant) {
-        restaurants.remove(restaurant)
+        restaurants.remove(restaurants.first { it.name == restaurant.name })
+    }
+
+    fun getDishes(restaurant: Restaurant): List<Dish> {
+        return restaurants.first { it.name == restaurant.name }.dishes
+    }
+
+    fun addDish(restaurant: Restaurant, dish: Dish) {
+        restaurants.first { it.name == restaurant.name }.dishes.add(dish)
+    }
+
+    fun deleteDish(restaurant: Restaurant, dish: Dish) {
+        restaurants.first { it.name == restaurant.name }.dishes.remove(dish)
     }
 }

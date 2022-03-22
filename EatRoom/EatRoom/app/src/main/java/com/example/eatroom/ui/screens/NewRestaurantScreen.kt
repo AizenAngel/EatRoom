@@ -18,14 +18,17 @@ fun NewRestaurantScreen(
     navigator: DestinationsNavigator,
     viewModel: RestaurantViewModel = hiltViewModel()
 ) {
-    var text by remember { mutableStateOf("Hello") } 
+    var text by remember { mutableStateOf("") }
     Column() {
         TextField(
             value = text,
             onValueChange = { text = it },
             label = { Text("Name") }
         )
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            viewModel.addNewRestaurant(text)
+            navigator.popBackStack()
+        }) {
             Text(text = "Add restaurant")
         }
     }

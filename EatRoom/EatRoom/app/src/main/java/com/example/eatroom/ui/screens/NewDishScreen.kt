@@ -22,7 +22,7 @@ fun NewDishScreen(
     viewModel: RestaurantViewModel = hiltViewModel(),
     restaurant: Restaurant
 ) {
-    var text by remember { mutableStateOf("Hello") }
+    var text by remember { mutableStateOf("") }
     var price by remember { mutableStateOf("") }
     Column() {
         TextField(
@@ -36,7 +36,10 @@ fun NewDishScreen(
             label = { Text("Price") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            viewModel.addDishToRestaurant(restaurant, text, price.toInt())
+            navigator.popBackStack()
+        }) {
             Text(text = "Add dish")
         }
     }
