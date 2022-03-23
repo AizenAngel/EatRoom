@@ -15,9 +15,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.data.UserType
+import com.example.eatroom.ui.screens.destinations.BasketScreenDestination
 import com.example.eatroom.ui.screens.destinations.NewDishScreenDestination
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -30,7 +32,7 @@ fun MenuScreen(
     restaurant: Restaurant,
     navigator: DestinationsNavigator,
     userType: UserType,
-    viewModel: RestaurantViewModel = hiltViewModel()
+    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     viewModel.setDish(restaurant)
     val dishes = viewModel.dishes
@@ -60,15 +62,23 @@ fun MenuScreen(
                 }
             }
         }
+        if (userType == UserType.USER) {
+            Button(onClick = {
+                navigator.navigate(BasketScreenDestination(restaurant))
+            }) {
+                Text(text = "Basket ${viewModel.basketPrice()}")
+            }
+        }
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun DishCard(
     restaurant: Restaurant,
     dish: Dish,
     userType: UserType,
-    viewModel: RestaurantViewModel = hiltViewModel()
+    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     Card() {
         Row() {
@@ -77,7 +87,9 @@ fun DishCard(
                 Text(dish.price.toString() + "din")
             }
             if (userType == UserType.USER){
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    viewModel.addItemToBasket(dish)
+                }) {
                     Text(text = "Add to basket")
                 }
             }

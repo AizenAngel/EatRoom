@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.eatroom.ui.screens.NavGraphs
 import com.example.eatroom.ui.theme.EatRoomTheme
@@ -28,3 +29,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+@ExperimentalMaterialApi
+@Composable
+fun mainActivity() = LocalContext.current as MainActivity

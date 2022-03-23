@@ -44,4 +44,22 @@ class RestaurantRepository {
     fun deleteDish(restaurant: Restaurant, dish: Dish) {
         restaurants.first { it.name == restaurant.name }.dishes.remove(dish)
     }
+
+    private val basket = mutableListOf<Dish>()
+
+    fun getBasket(): List<Dish> {
+        return basket
+    }
+
+    fun clearBasket() {
+        basket.clear()
+    }
+
+    fun addToBasket(dish: Dish) {
+        basket.add(dish)
+    }
+
+    fun deleteBasketItem(dish: Dish) {
+        basket.remove(dish)
+    }
 }

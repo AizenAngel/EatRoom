@@ -17,6 +17,7 @@ class RestaurantViewModel @Inject constructor(
 
     val restaurants = mutableStateOf(repository.getRestaurants())
     val dishes = mutableStateListOf<Dish>()
+    val basket = mutableStateListOf<Dish>()
 
     fun addNewRestaurant(name: String) {
         repository.addRestaurant(Restaurant(name, mutableListOf()))
@@ -38,5 +39,21 @@ class RestaurantViewModel @Inject constructor(
     fun deleteDish(restaurant: Restaurant, dish: Dish){
         repository.deleteDish(restaurant, dish)
         setDish(restaurant)
+    }
+
+    fun clearBasket() {
+        basket.clear()
+    }
+
+    fun addItemToBasket(dish: Dish) {
+        basket.add(dish)
+    }
+
+    fun basketPrice(): Int {
+        return basket.sumOf { it.price } ?: 0
+    }
+
+    fun deleteBasketItem(dish: Dish) {
+        basket.remove(dish)
     }
 }

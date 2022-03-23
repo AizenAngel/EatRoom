@@ -2,6 +2,7 @@ package com.example.eatroom.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,11 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
+import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
-import com.example.eatroom.model.data.UserType
-import com.example.eatroom.ui.screens.destinations.MenuScreenDestination
-import com.example.eatroom.ui.screens.destinations.NewRestaurantScreenDestination
-import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -27,47 +25,50 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @ExperimentalMaterialApi
 @Destination
 @Composable
-fun RestaurantScreen(
-    userType: UserType,
+fun BasketScreen(
+    restaurant: Restaurant,
     navigator: DestinationsNavigator,
     viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
-    viewModel.clearBasket()
-    val restaurants by viewModel.restaurants
+    val basket = viewModel.basket
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Restaurant list")
+        Text(text = "Basket")
         LazyColumn() {
-            items(restaurants) { restaurant ->
-                RestaurantCard(navigator, restaurant, userType)
+            items(basket) { dish ->
+                BasketItemCard(dish)
             }
         }
-        if (userType == UserType.OWNER){
-            Button(onClick = {
-                navigator.navigate(NewRestaurantScreenDestination())
-            }) {
-                Text(text = "Add Restaurant")
-            }
+        Button(onClick = {
+
+        }) {
+            Text(text = "Order for ${viewModel.basketPrice()}din")
         }
     }
 }
 
 @ExperimentalMaterialApi
 @Composable
-fun RestaurantCard(
-    navigator: DestinationsNavigator,
-    restaurant: Restaurant,
-    userType: UserType
+fun BasketItemCard(
+    dish: Dish,
+    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
-    Card(
-        onClick = {
-            navigator.navigate(MenuScreenDestination(restaurant, userType))
+    Card() {
+        Row() {
+            Column() {
+                Text(dish.name)
+                Text(dish.price.toString() + "din")
+            }
+
+            Button(onClick = {
+                viewModel.deleteBasketItem(dish)
+            }) {
+                Text(text = "Delete item")
+            }
         }
-    ) {
-        Text(text = restaurant.name)
     }
 }
