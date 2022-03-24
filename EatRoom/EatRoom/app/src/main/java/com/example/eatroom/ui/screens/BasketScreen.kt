@@ -17,7 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.Dish
+import com.example.eatroom.model.data.Order
+import com.example.eatroom.model.data.OrderState
 import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.ui.screens.destinations.OrderScreenDestination
+import com.example.eatroom.viewmodels.OrderViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -28,7 +32,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun BasketScreen(
     restaurant: Restaurant,
     navigator: DestinationsNavigator,
-    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
+    viewModel: RestaurantViewModel = hiltViewModel(mainActivity()),
+    orderViewModel: OrderViewModel = hiltViewModel()
 ) {
     val basket = viewModel.basket
 
@@ -44,7 +49,8 @@ fun BasketScreen(
             }
         }
         Button(onClick = {
-
+            orderViewModel.addOrder(Order(0, restaurant.name, basket.toList(), OrderState.PREPARING))
+            navigator.navigate(OrderScreenDestination(0))
         }) {
             Text(text = "Order for ${viewModel.basketPrice()}din")
         }

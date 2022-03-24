@@ -1,6 +1,8 @@
 package com.example.eatroom.model.data
 
 data class Order(
-    val restaurantName: String,
-    val dishes: List<Dish>
+    val id: Int,
+    var restaurantName: String,
+    val dishes: List<Dish>,
+    var state: OrderState
 )
