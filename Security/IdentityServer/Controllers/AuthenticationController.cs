@@ -24,9 +24,9 @@ namespace IdentityServer.Controllers
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RegisterBuyer([FromBody] NewUserDto newUser)
+        public async Task<IActionResult> RegisterDeliverer([FromBody] NewUserDto newUser)
         {
-            return await RegisterNewUserWithRoles(newUser, new string[] { "Buyer" });
+            return await RegisterNewUserWithRoles(newUser, new string[] { "Deliverer" });
         }
 
         [HttpPost("[action]")]
