@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{31F04CC0-E642-4855-A7CE-58A67B7744BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurants", "Restaurants\Restaurants.csproj", "{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurants.API", "Restaurants\Restaurants.API.csproj", "{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Restaurants", "Restaurants", "{7E3A1C03-F8A2-43BB-A6EE-A730FDF85385}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,7 +24,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3} = {31F04CC0-E642-4855-A7CE-58A67B7744BF}
+		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3} = {7E3A1C03-F8A2-43BB-A6EE-A730FDF85385}
+		{7E3A1C03-F8A2-43BB-A6EE-A730FDF85385} = {31F04CC0-E642-4855-A7CE-58A67B7744BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62495BC4-98E2-4C71-BED9-1740FC84BD63}
