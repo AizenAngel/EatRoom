@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Restaurants.API.Entities;
 namespace Restaurants.API.Repositories
 {
-    interface IMenuRepository
+    public interface IMenuRepository
     {
 
         Task<IEnumerable<Menu>> GetAllMenus();
