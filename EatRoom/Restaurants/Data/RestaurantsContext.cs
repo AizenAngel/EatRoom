@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Restaurants.API.Data
 {
-    public class RestaurantsContext
+    public class RestaurantsContext:IRestaurantsContext
     {
         private readonly IConfiguration _configuration;
 

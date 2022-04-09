@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  portainer:
+    image: portainer/portainer-ce
+  restaurants.api:
+    image: ${DOCKER_REGISTRY-}restaurantsapi
+    build:
+      context: .
+      dockerfile: Restaurants/Dockerfile
+  restaurantsdb:
+    image: postgres
+
+volumes:
+    postgres_data:
+    portainer_data:
+

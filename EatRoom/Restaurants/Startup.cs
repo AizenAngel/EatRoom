@@ -10,7 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Restaurants.API.Data;
+using Restaurants.API.Repositories;
 namespace Restaurants
 {
     public class Startup
@@ -27,6 +28,8 @@ namespace Restaurants
         {
 
             services.AddControllers();
+            services.AddScoped<IRestaurantsContext,RestaurantsContext>();
+            services.AddScoped<IDishRepository, DishRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Restaurants", Version = "v1" });

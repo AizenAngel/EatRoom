@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+  restaurants.api:
+    container_name: restaurants.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=restaurantsdb;Port=5432;Database=restaurants;User Id=root;Password=root;"
+    depends_on:
+      - restaurantsdb
+    ports:
+      - "8002:80"
+  restaurantsdb:
+    container_name: restaurantsdb
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=restaurants
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/new
+  
