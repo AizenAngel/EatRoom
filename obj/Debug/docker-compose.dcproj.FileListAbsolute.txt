@@ -24,3 +24,13 @@ C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.AspNetCore.C
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\IdentityServer.pdb
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\AutoMapper.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Protocols.dll
+C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\obj\Debug\docker-compose.dcproj.CopyComplete

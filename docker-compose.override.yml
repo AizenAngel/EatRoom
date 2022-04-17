@@ -17,5 +17,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=bozaCar12345rs2;"
+    depends_on:
+        - mssql
     ports:
-      - "80"
+      - "4000:80"
