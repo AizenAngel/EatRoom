@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering\\Ordering.csproj": {}
+    "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering\\Ordering.csproj": {
+    "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering\\Ordering.csproj",
+        "projectUniqueName": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.csproj",
         "projectName": "Ordering",
-        "projectPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering\\Ordering.csproj",
+        "projectPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.csproj",
         "packagesPath": "C:\\Users\\Marija\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering\\obj\\",
+        "outputPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Marija\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,7 @@
           "dependencies": {
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.3.0, )"
+              "version": "[5.6.3, )"
             }
           },
           "imports": [

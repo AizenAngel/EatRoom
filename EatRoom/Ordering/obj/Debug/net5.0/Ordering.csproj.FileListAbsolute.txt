@@ -27,3 +27,13 @@ C:\Users\Marija\EatRoom\EatRoom\Ordering\Ordering\obj\Debug\net5.0\Ordering.dll
 C:\Users\Marija\EatRoom\EatRoom\Ordering\Ordering\obj\Debug\net5.0\ref\Ordering.dll
 C:\Users\Marija\EatRoom\EatRoom\Ordering\Ordering\obj\Debug\net5.0\Ordering.pdb
 C:\Users\Marija\EatRoom\EatRoom\Ordering\Ordering\obj\Debug\net5.0\Ordering.genruntimeconfig.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.csproj.AssemblyReference.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.AssemblyInfoInputs.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.AssemblyInfo.cs
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.csproj.CoreCompileInputs.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\ref\Ordering.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering\obj\Debug\net5.0\Ordering.pdb
