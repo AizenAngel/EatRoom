@@ -33,4 +33,3 @@ C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityMode
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom\obj\Debug\docker-compose.dcproj.CopyComplete
