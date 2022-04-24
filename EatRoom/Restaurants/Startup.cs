@@ -12,6 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Restaurants.API.Data;
 using Restaurants.API.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+
 namespace Restaurants
 {
     public class Startup
@@ -28,8 +31,12 @@ namespace Restaurants
         {
 
             services.AddControllers();
+
             services.AddScoped<IRestaurantsContext,RestaurantsContext>();
             services.AddScoped<IDishRepository, DishRepository>();
+            services.AddScoped<IMenuRepository,MenuRepository>();
+            services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+            services.AddDbContext<RestaurantsContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=restaurants;User Id=root;Password=root;"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Restaurants", Version = "v1" });

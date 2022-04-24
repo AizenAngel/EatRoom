@@ -29,10 +29,10 @@ namespace Restaurants.API.Controllers
             return Ok(dishes);
         }
 
-        [HttpGet("dishId")]
+        [HttpGet("dishId",Name = "GetDish")]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Dish>> GetDish(string dishId)
+        public async Task<ActionResult<Dish>> GetDish(int dishId)
         {
             var dish = await _repository.GetDish(dishId);
             if (dish == null)
@@ -46,7 +46,8 @@ namespace Restaurants.API.Controllers
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateDish([FromBody] Dish dish)
         {
-            return Ok(await _repository.UpdateDish(dish));
+            await _repository.UpdateDish(dish);
+            return Ok();
         }
 
 
@@ -61,7 +62,7 @@ namespace Restaurants.API.Controllers
 
         [HttpDelete("dishId")]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Dish>> DeleteDish(string dishId)
+        public async Task<ActionResult<Dish>> DeleteDish(int dishId)
         {
             return Ok(await _repository.DeleteDish(dishId));
         }

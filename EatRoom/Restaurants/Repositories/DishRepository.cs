@@ -5,45 +5,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Restaurants.API.Repositories
 {
     public class DishRepository : IDishRepository
     {
-        private readonly IRestaurantsContext _context;
 
-        public DishRepository(IRestaurantsContext context)
+        private readonly RestaurantsContext _context;
+
+        public DishRepository(RestaurantsContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Task CreateDish(Dish dish)
+        public async Task CreateDish(Dish dish)
         {
-            throw new NotImplementedException();
+            await _context.dishes.AddAsync(dish);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<bool> DeleteDish(string id)
+        public async Task<bool> DeleteDish(int id)
         {
-            throw new NotImplementedException();
+            var dish = await _context.dishes.FindAsync(id);
+            if (dish != null)
+            {
+                _context.dishes.Remove(dish);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+
         }
 
-        public Task<IEnumerable<Dish>> GetAllDishes()
+        public async Task<IEnumerable<Dish>> GetAllDishes()
         {
-            throw new NotImplementedException();
+            return await _context.dishes.Where(o => true).ToListAsync();
         }
 
-        public async Task<Dish> GetDish(string id)
+        public async Task<Dish> GetDish(int id)
         {
-            using var connection = _context.GetConnection();
-
-            var dish = await connection.QueryFirstOrDefaultAsync<Dish>(
-                "SELECT * FROM Dish WHERE id = @Id", new { Id = id });
-            return dish;
+            return await _context.dishes.FindAsync(id);
         }
 
-        public Task<bool> UpdateDish(Dish dish)
+        public async Task UpdateDish(Dish dish)
         {
-            throw new NotImplementedException();
+            _context.Entry(dish).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

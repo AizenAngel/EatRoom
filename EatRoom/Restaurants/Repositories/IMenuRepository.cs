@@ -14,7 +14,7 @@ namespace Restaurants.API.Repositories
 
         Task CreateMenu(Menu menu);
 
-        Task<bool> UpdateMenu(Menu menu);
+        Task UpdateMenu(Menu menu);
 
         Task<bool> DeleteMenu(string id);
     }
