@@ -22,8 +22,7 @@ namespace Restaurants.API.Data.EntityConfigurations
                 .IsRequired();
             builder.Property<string>("ImageFile")
                .HasColumnType("VARCHAR(500000)")
-               .HasColumnName("ImageFile")
-               .IsRequired();
+               .HasColumnName("ImageFile");
         }
     }
 }
