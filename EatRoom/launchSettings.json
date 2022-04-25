@@ -4,7 +4,6 @@
       "commandName": "DockerCompose",
       "composeLaunchServiceName": "restaurants.api",
       "serviceActions": {
-        "portainer": "StartWithoutDebugging",
         "restaurants.api": "StartDebugging",
         "restaurantsdb": "StartWithoutDebugging"
       },

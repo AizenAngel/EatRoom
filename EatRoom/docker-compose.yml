@@ -1,8 +1,6 @@
 version: '3.4'
 
 services:
-  portainer:
-    image: portainer/portainer-ce
   restaurants.api:
     image: ${DOCKER_REGISTRY-}restaurantsapi
     build:
@@ -13,5 +11,4 @@ services:
 
 volumes:
     postgres_data:
-    portainer_data:
 

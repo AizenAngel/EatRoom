@@ -35,7 +35,7 @@ namespace Restaurants
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<IMenuRepository,MenuRepository>();
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
-            services.AddDbContext<RestaurantsContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=restaurants;User Id=root;Password=root;"));
+            services.AddDbContext<RestaurantsContext>(options => options.UseNpgsql(Configuration["DatabaseSettings:ConnectionString"]));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Restaurants", Version = "v1" });
