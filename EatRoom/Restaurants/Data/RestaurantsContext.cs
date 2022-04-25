@@ -10,23 +10,16 @@ using System.Threading.Tasks;
 
 namespace Restaurants.API.Data
 {
-    public class RestaurantsContext:DbContext, IRestaurantsContext
+    public class RestaurantsContext:DbContext
     {
-        private readonly IConfiguration _configuration;
 
-        public RestaurantsContext(DbContextOptions options, IConfiguration configuration) : base(options)
+        public RestaurantsContext(DbContextOptions options) : base(options)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public DbSet<Restaurant> restaurants { get; set; }
         public DbSet<Dish> dishes { get; set; }
         public DbSet<Menu> menus { get; set; }
-
-        public NpgsqlConnection GetConnection()
-        {
-            return new NpgsqlConnection(_configuration.GetValue<string>("ConnectionString"));
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

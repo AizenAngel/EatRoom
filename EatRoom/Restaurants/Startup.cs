@@ -32,7 +32,6 @@ namespace Restaurants
 
             services.AddControllers();
 
-            services.AddScoped<IRestaurantsContext,RestaurantsContext>();
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<IMenuRepository,MenuRepository>();
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
