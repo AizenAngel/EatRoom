@@ -23,6 +23,10 @@ namespace Restaurants.API.Data.EntityConfigurations
             builder.Property<string>("ImageFile")
                .HasColumnType("VARCHAR(500000)")
                .HasColumnName("ImageFile");
+            builder.Property<decimal>("Price")
+                .HasColumnType("decimal")
+                .HasColumnName("Price")
+                .IsRequired();
         }
     }
 }

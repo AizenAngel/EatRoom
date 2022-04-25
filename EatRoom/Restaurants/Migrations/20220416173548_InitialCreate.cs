@@ -36,7 +36,6 @@ namespace Restaurants.API.Migrations
             columns: table => new
             {
                 Id = table.Column<int>(type: "int", nullable: false).Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo),
-                Price = table.Column<double>(type: "decimal", nullable: false),
                 RestaurantId = table.Column<int>(type: "int", nullable: false),
 
             },
@@ -58,7 +57,8 @@ namespace Restaurants.API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false).Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo),
                     Name = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     ImageFile = table.Column<string>(type: "VARCHAR(500000)", nullable: true),
-                    MenuId= table.Column<int>(type: "int", nullable: true),
+                    Price = table.Column<double>(type: "decimal", nullable: false),
+                    MenuId = table.Column<int>(type: "int", nullable: true),
 
                 },
                 constraints: table =>

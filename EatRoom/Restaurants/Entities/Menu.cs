@@ -10,8 +10,6 @@ namespace Restaurants.API.Entities
         public int Id { get; set; }
         public List<Dish> Dishes { get; set; }
 
-        public decimal Price { get; set; }
-
         public int RestaurantId { get; set; }
         public Restaurant restaurant { get; set; }
     }

@@ -14,11 +14,6 @@ namespace Restaurants.API.Data.EntityConfigurations
             builder.ToTable("Menu");
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("Menuseq");
-
-            builder.Property<decimal>("Price")
-                .HasColumnType("decimal")
-                .HasColumnName("Price")
-                .IsRequired();
         }
     }
 }
