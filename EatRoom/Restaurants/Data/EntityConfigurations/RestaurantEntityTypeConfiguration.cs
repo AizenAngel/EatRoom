@@ -21,7 +21,7 @@ namespace Restaurants.API.Data.EntityConfigurations
                 .HasColumnName("Name")
                 .IsRequired();
             builder.Property<string>("LogoFile")
-               .HasColumnType("VARCHAR(50)")
+               .HasColumnType("VARCHAR(500000)")
                .HasColumnName("LogoFile")
                .IsRequired();
         }
