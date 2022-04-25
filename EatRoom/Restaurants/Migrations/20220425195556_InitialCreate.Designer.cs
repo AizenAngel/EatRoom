@@ -9,8 +9,8 @@ using Restaurants.API.Data;
 namespace Restaurants.API.Migrations
 {
     [DbContext(typeof(RestaurantsContext))]
-    [Migration("20220425194612_dataSeeders")]
-    partial class dataSeeders
+    [Migration("20220425195556_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

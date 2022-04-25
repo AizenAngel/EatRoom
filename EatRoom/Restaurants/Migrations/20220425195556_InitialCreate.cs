@@ -8,8 +8,8 @@ namespace Restaurants.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateSequence(
-                name: "Dishseq",
-                incrementBy: 1);
+                          name: "Dishseq",
+                          incrementBy: 1);
             migrationBuilder.CreateSequence(
                 name: "Menuseq",
                 incrementBy: 1);
@@ -70,16 +70,17 @@ namespace Restaurants.API.Migrations
                         principalTable: "Menu",
                         principalColumn: "Id");
                 });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-             name: "Dish");
+                 name: "Dish");
             migrationBuilder.DropTable(
                 name: "Menu");
             migrationBuilder.DropTable(
-            name: "Restaurant");
+                name: "Restaurant");
 
             migrationBuilder.DropSequence(
                 name: "Dishseq");
