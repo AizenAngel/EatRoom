@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EatRoom",
+    "\\EatRoom\\EatRoom",
+    "\\EatRoom\\EatRoom\\Ordering"
   ],
-  "SelectedNode": "\\Ordering.sln (EatRoom\\Ordering\\Ordering.sln)",
+  "SelectedNode": "\\EatRoom\\EatRoom\\Ordering\\Ordering",
   "PreviewInSolutionExplorer": false
 }
