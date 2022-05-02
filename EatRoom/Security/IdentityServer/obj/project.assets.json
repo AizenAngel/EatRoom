@@ -5827,24 +5827,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bozam\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Luka\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bozam\\OneDrive\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
+      "projectUniqueName": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
       "projectName": "IdentityServer",
-      "projectPath": "C:\\Users\\bozam\\OneDrive\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
-      "packagesPath": "C:\\Users\\bozam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bozam\\OneDrive\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\obj\\",
+      "projectPath": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
+      "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\bozam\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
