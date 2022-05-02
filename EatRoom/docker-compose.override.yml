@@ -1,6 +1,24 @@
 version: '3.4'
 
 services:
+  mssql:
+    container_name: mssql
+    environment:
+      - SA_PASSWORD=bozaCar12345rs2
+      - ACCEPT_EULA=Y
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=bozaCar12345rs2;"
+    ports:
+      - "8001:80"
   restaurants.api:
     container_name: restaurants.api
     environment:
