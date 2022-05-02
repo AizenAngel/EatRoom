@@ -18,7 +18,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=bozaCar12345rs2;"
     ports:
-      - "80"
+      - "8001:80"
   restaurants.api:
     container_name: restaurants.api
     environment:

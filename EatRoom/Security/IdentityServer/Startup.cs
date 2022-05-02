@@ -1,3 +1,4 @@
+using IdentityServer.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,11 @@ namespace IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddAuthentication();
+            services.ConfigurePersistance(Configuration);
+            services.ConfigureIdentity();
+            services.ConfigureJWT(Configuration);
+            services.ConfigureMiscellaneousServices();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -44,7 +50,7 @@ namespace IdentityServer
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

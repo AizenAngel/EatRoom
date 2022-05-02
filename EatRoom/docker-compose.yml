@@ -3,17 +3,11 @@ version: '3.4'
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2017-latest
- 
-
   identityserver:
     image: ${DOCKER_REGISTRY-}identityserver
     build:
       context: .
       dockerfile: Security/IdentityServer/Dockerfile
-
-volumes:
-  mssql_data:
-  
   restaurants.api:
     image: ${DOCKER_REGISTRY-}restaurantsapi
     build:
@@ -23,5 +17,8 @@ volumes:
     image: postgres
 
 volumes:
-    postgres_data:
+  mssql_data:
+  postgres_data:
+  
+    
 
