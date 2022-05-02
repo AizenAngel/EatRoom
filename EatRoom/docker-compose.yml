@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  restaurants.api:
+    image: ${DOCKER_REGISTRY-}restaurantsapi
+    build:
+      context: .
+      dockerfile: Restaurants/Dockerfile
+  restaurantsdb:
+    image: postgres
+
+volumes:
+    postgres_data:
+
