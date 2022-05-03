@@ -15,3 +15,40 @@ services:
       - basketdb
     ports:
       - "8005:80"
+  mssql:
+    container_name: mssql
+    environment:
+      - SA_PASSWORD=bozaCar12345rs2
+      - ACCEPT_EULA=Y
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=bozaCar12345rs2;"
+    ports:
+      - "8001:80"
+  restaurants.api:
+    container_name: restaurants.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings:ConnectionString="Server=restaurantsdb;Port=5432;Database=restaurants;User Id=root;Password=root;"
+    ports:
+      - "8002:80"
+  restaurantsdb:
+    container_name: restaurantsdb
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=restaurants
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  

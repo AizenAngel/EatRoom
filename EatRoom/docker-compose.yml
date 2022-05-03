@@ -8,3 +8,24 @@ services:
     build:
       context: .
       dockerfile: Basket/Basket.API/Dockerfile
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Security/IdentityServer/Dockerfile
+  restaurants.api:
+    image: ${DOCKER_REGISTRY-}restaurantsapi
+    build:
+      context: .
+      dockerfile: Restaurants/Dockerfile
+  restaurantsdb:
+    image: postgres
+
+volumes:
+  mssql_data:
+  postgres_data:
+  
+    
+

@@ -10,12 +10,12 @@ namespace Restaurants.API.Repositories
 
         Task<IEnumerable<Restaurant>> GetAllRestaurants();
 
-        Task<Restaurant> GetRestaurant(string id);
+        Task<Restaurant> GetRestaurant(int id);
 
         Task CreateRestaurant(Restaurant restaurant);
 
-        Task<bool> UpdateRestaurant(Restaurant restaurant);
+        Task UpdateRestaurant(Restaurant restaurant);
 
-        Task<bool> DeleteRestauran(string id);
+        Task<bool> DeleteRestaurant(int id);
     }
 }

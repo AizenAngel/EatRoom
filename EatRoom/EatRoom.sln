@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{6A05F0F0-659B-4793-BA0F-49D3A14778BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "Security\IdentityServer\IdentityServer.csproj", "{6E6C5445-723E-4630-946D-3E3BD71C4B0B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A27B2B53-83FF-4A6B-91B5-27888DCC521E}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{31F04CC0-E642-4855-A7CE-58A67B7744BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurants.API", "Restaurants\Restaurants.API.csproj", "{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}"
@@ -11,14 +17,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Restaurants", "Restaurants"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket\Basket.API\Basket.API.csproj", "{7BA62F0D-295E-4AB6-8779-BFF5DA63A032}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{20DC84B8-350A-404A-AB9D-00673778E1F7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,6 +48,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{6E6C5445-723E-4630-946D-3E3BD71C4B0B} = {6A05F0F0-659B-4793-BA0F-49D3A14778BF}
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3} = {7E3A1C03-F8A2-43BB-A6EE-A730FDF85385}
 		{7E3A1C03-F8A2-43BB-A6EE-A730FDF85385} = {31F04CC0-E642-4855-A7CE-58A67B7744BF}
 	EndGlobalSection

@@ -9,13 +9,13 @@ namespace Restaurants.API.Repositories
     {
         Task<IEnumerable<Dish>> GetAllDishes();
 
-        Task<Dish> GetDish(string id);
+        Task<Dish> GetDish(int id);
 
         Task CreateDish(Dish dish);
 
-        Task<bool> UpdateDish(Dish dish);
+        Task UpdateDish(Dish dish);
 
-        Task<bool> DeleteDish(string id);
+        Task<bool> DeleteDish(int id);
 
     }
 }
