@@ -1,6 +1,20 @@
 version: '3.4'
 
 services:
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+    - "6379:6379"
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CacheSettings:ConnectionString=basketdb:6379
+    depends_on:
+      - basketdb
+    ports:
+      - "8005:80"
   mssql:
     container_name: mssql
     environment:
@@ -24,8 +38,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DatabaseSettings:ConnectionString="Server=restaurantsdb;Port=5432;Database=restaurants;User Id=root;Password=root;"
-    depends_on:
-      - restaurantsdb
     ports:
       - "8002:80"
   restaurantsdb:
