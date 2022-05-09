@@ -6,13 +6,13 @@ namespace Ordering.Domain.Common
     {
         public int Id { get; protected set; }
 
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
-        public DateTime DateCreated { get; private set; }
+        public DateTime DateCreated { get; set; }
 
-        public string ModifiedBy { get; private set; }
+        public string ModifiedBy { get; set; }
 
-        public DateTime? DateModified { get; private set; }
+        public DateTime? DateModified { get; set; }
 
     }
 }

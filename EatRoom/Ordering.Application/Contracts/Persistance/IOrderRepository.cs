@@ -8,8 +8,8 @@ namespace Ordering.Application.Contracts.Persistance
     public interface IOrderRepository : IAsyncRepository<Order>
     {
         Task<IEnumerable<Order>> getOrderByBuyerUsername(string username);
-        Task<IEnumerable<Order>> getOrderByBuyerId(string id);
-        Task<IEnumerable<Order>> getOrdersByDelUsername(string username);
-        Task<IEnumerable<Order>> getOrdersByDelId(string id);
+        //Task<IEnumerable<Order>> getOrderByBuyerId(string id);
+        //Task<IEnumerable<Order>> getOrdersByDelUsername(string username);
+        //Task<IEnumerable<Order>> getOrdersByDelId(string id);
     }
 }

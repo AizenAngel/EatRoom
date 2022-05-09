@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\EatRoom",
-    "\\EatRoom\\EatRoom",
-    "\\EatRoom\\EatRoom\\Ordering"
+    ""
   ],
-  "SelectedNode": "\\EatRoom\\EatRoom\\Ordering\\Ordering",
+  "SelectedNode": "\\Ordering.API.sln",
   "PreviewInSolutionExplorer": false
 }

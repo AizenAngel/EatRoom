@@ -1,0 +1,17 @@
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Infrastructure.deps.json
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Infrastructure.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\ref\Ordering.Infrastructure.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Infrastructure.pdb
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Application.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Domain.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Application.pdb
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\bin\Debug\net5.0\Ordering.Domain.pdb
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.AssemblyInfo.cs
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.csproj.CopyComplete
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\ref\Ordering.Infrastructure.dll
+C:\Users\Marija\EatRoom\EatRoom\Ordering.Infrastructure\obj\Debug\net5.0\Ordering.Infrastructure.pdb

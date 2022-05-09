@@ -1,5 +1,6 @@
 ﻿using Ordering.Domain.Common;
 using Ordering.Domain.Entities;
+using Ordering.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,12 @@ namespace Ordering.Domain.Aggregates
     {
         public string BuyerId { get; private set; }
         public string BuyerUsername { get; private set; }
+
+        public string Email { get; private set; }
         public DateTime OrderDate { get; private set; }
 
-        /*Information about delivery user*/
+        public Addresses address;
+        /*Information about delivery man*/
         public string DeliveryManId { get; private set; }
         public string DeliveryManUsername { get; private set; }
         /*Potentially more info about accepting delivery etc...*/
@@ -23,19 +27,21 @@ namespace Ordering.Domain.Aggregates
         private readonly List<OrderItem> _orderItems = new List<OrderItem>();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
-        public Order(string buyerId, string buyerUsername, string deliveryManId, string deliveryManUsername)
+        public Order(string buyerId, string buyerUsername, string email, Addresses address, string deliveryManId, string deliveryManUsername)
         {
             BuyerId = buyerId ?? throw new ArgumentNullException(nameof(buyerId));
             BuyerUsername = buyerUsername ?? throw new ArgumentNullException(nameof(buyerUsername));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+            this.address = address ?? throw new ArgumentNullException(nameof(address));
             DeliveryManId = deliveryManId ?? throw new ArgumentNullException(nameof(deliveryManId));
             DeliveryManUsername = deliveryManUsername ?? throw new ArgumentNullException(nameof(deliveryManUsername));
-            OrderDate = DateTime.Now;
-            DeliveryModified = DateTime.Now;
-            Status = OrderStatus.ACCEPTED;
         }
 
-        public Order(int id, string buyerId, string buyerUsername, string deliveryManId, string deliveryManUsername)
-                : this(buyerId, buyerUsername, deliveryManId, deliveryManUsername)
+    
+
+       
+        public Order(int id, string buyerId,  string buyerUsername, string email, Addresses address, string deliveryManId, string deliveryManUsername)
+                : this(buyerId, buyerUsername, email, address, deliveryManId, deliveryManUsername)
         {
             Id = id;
         }
@@ -61,7 +67,7 @@ namespace Ordering.Domain.Aggregates
                 existingOrderItem.AddUnits(units);
             }
         }
-        public decimal getTotalPrice()
+        public decimal GetTotalPrice()
         {
             return _orderItems.Sum(o => o.getTotalPriceItem());
         }

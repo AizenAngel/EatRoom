@@ -1,0 +1,26 @@
+services:
+  orderdb:
+    container_name: orderdb
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ordering123
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+    - published: 1433
+      target: 1433
+    restart: always
+    volumes:
+    - orderdb_data:/var/opt/mssql/data:rw
+  ordering.api:
+    build:
+      context: C:\Users\Marija\EatRoom\EatRoom\Ordering.API
+      dockerfile: Dockerfile
+    container_name: ordering.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: orderingapi
+    ports:
+    - target: 80
+version: '3.4'
+volumes:
+  orderdb_data: {}

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.Domain\\Ordering.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering.Domain\\Ordering.Domain.csproj",
       "projectName": "Ordering.Domain",
-      "projectPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.Domain\\Ordering.Domain.csproj",
+      "projectPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering.Domain\\Ordering.Domain.csproj",
       "packagesPath": "C:\\Users\\Marija\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marija\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fybaZL+XLW/JUMhZkEO3FIhOa9SbWUk3MfUc5wsDoT4JZ1BFGSIolPM7ty8MCplO0gnDb3EwGcmIvDoxA5YRQA==",
+  "dgSpecHash": "IAPMQbRpSlqTIUncRLa6MZDREz4LYEKodNWh2FUJt7S3llu55roFkh56Kfg5qggudSBtivKEKy/JQyFcREYxMQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering\\Ordering.Domain\\Ordering.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Marija\\EatRoom\\EatRoom\\Ordering.Domain\\Ordering.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
