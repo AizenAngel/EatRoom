@@ -8,10 +8,10 @@ namespace Ordering.Application.Features.Orders.Queries.ModelView
 {
     public class OrderItemModelView
     {
-        public string ProductName { get; private set; }
-        public int ProductId { get; private set; }
-        public string PictureUrl { get; private set; }
-        public decimal Price { get; private set; }
-        public int Units { get; private set; }
+        public string ProductName { get;  set; }
+        public int ProductId { get;  set; }
+        public string PictureUrl { get;  set; }
+        public decimal Price { get;  set; }
+        public int Units { get;  set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Infrasturucture;
 using Ordering.Application.Contracts.Infrasturucture.Factories;
 using Ordering.Application.Contracts.Persistance;
@@ -18,12 +19,14 @@ namespace Ordering.Application.Features.Orders.Commands.CreateOrder
         private readonly IOrderRepository _orderRepsitory;
         private readonly IOrderFactory _orderFactory;
         private readonly IEmailService _emailService;
+        private readonly ILogger<CreateOrderCommandHandler> _logger;
 
-        public CreateOrderCommandHandler(IOrderRepository orderRepsitory, IOrderFactory orderFactory, IEmailService emailService)
+        public CreateOrderCommandHandler(IOrderRepository orderRepsitory, IOrderFactory orderFactory, IEmailService emailService, ILogger<CreateOrderCommandHandler> logger)
         {
             _orderRepsitory = orderRepsitory ?? throw new ArgumentNullException(nameof(orderRepsitory));
             _orderFactory = orderFactory ?? throw new ArgumentNullException(nameof(orderFactory));
             _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<int> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -38,15 +41,17 @@ namespace Ordering.Application.Features.Orders.Commands.CreateOrder
 
         private async Task SendEmail(Order newOrder)
         {
-            var email = new Email(newOrder.Email, "", "");
+            var email = new Email(newOrder.Email, $"Order {newOrder.Id} is successfully created", "New order is created!");
+           
+            /*Ako ne uspe slanje mejla*/
             try
             {
                 await _emailService.SendEmail(email);
             }
-            catch(Exception _)
+            catch(Exception e)
             {
-                /*If exception*/
-                
+
+                _logger.LogError("Error " + e.Message);          
                 throw;
                
             }
