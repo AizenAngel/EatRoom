@@ -14,15 +14,6 @@ namespace Restaurants.API.Migrations
                             columns: new[] { "Id", "Name" },
                             values: new object[] { 1001, "Food Factory" });
 
-            /*            // Menu seeders
-
-                        migrationBuilder.InsertData(table: "Menu",
-                                         columns: new[] { "Id", "RestaurantId" },
-                                         values: new object[] { 1000, 1000 });
-
-                        migrationBuilder.InsertData(table: "Menu",
-                                         columns: new[] { "Id", "RestaurantId" },
-                                         values: new object[] { 1001, 1001 });*/
 
             // Dishes seeders
 

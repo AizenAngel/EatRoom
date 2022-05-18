@@ -33,7 +33,6 @@ namespace Restaurants
             services.AddControllers();
 
             services.AddScoped<IDishRepository, DishRepository>();
-            //services.AddScoped<IMenuRepository,MenuRepository>();
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddDbContext<RestaurantsContext>(options => options.UseNpgsql(Configuration["DatabaseSettings:ConnectionString"]));
             services.AddSwaggerGen(c =>
