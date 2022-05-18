@@ -1,4 +1,26 @@
 services:
+  basket.api:
+    build:
+      context: C:\Users\Luka\Desktop\EatRoom\EatRoom
+      dockerfile: Basket/Basket.API/Dockerfile
+    container_name: basket.api
+    depends_on:
+      basketdb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      CacheSettings:ConnectionString: basketdb:6379
+    image: basketapi
+    ports:
+    - published: 8005
+      target: 80
+  basketdb:
+    container_name: basketdb
+    image: redis:alpine
+    ports:
+    - published: 6379
+      target: 6379
+    restart: always
   identityserver:
     build:
       context: C:\Users\Luka\Desktop\EatRoom\EatRoom
@@ -6,8 +28,8 @@ services:
     container_name: identityserver
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings:IdentityConnectionString: '"Server=mssql;Database=IdentityDb;User
-        Id=sa;Password=bozaCar12345rs2;"'
+      ConnectionStrings:IdentityConnectionString: Server=mssql;Database=IdentityDb;User
+        Id=sa;Password=bozaCar12345rs2;
     image: identityserver
     ports:
     - published: 8001
@@ -29,9 +51,6 @@ services:
       context: C:\Users\Luka\Desktop\EatRoom\EatRoom
       dockerfile: Restaurants/Dockerfile
     container_name: restaurants.api
-    depends_on:
-      restaurantsdb:
-        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DatabaseSettings:ConnectionString: '"Server=restaurantsdb;Port=5432;Database=restaurants;User

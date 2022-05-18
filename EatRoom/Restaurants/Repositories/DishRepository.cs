@@ -53,5 +53,11 @@ namespace Restaurants.API.Repositories
             _context.Entry(dish).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Dish>> GetDishesByRestaurantId(int restaurantId)
+        {
+            return await _context.dishes.Where(o => o.RestaurantId==restaurantId).ToListAsync();
+        }
+
     }
 }
