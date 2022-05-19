@@ -17,5 +17,7 @@ namespace Restaurants.API.Repositories
 
         Task<bool> DeleteDish(int id);
 
+        Task<IEnumerable<Dish>> GetDishesByRestaurantId(int restaurantId);
+
     }
 }

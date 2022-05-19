@@ -11,7 +11,7 @@ namespace Restaurants.API.Controllers
 {
 
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/")]
     public class DishController : ControllerBase
     {
         private readonly IDishRepository _repository;
@@ -21,7 +21,7 @@ namespace Restaurants.API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet]
+        [HttpGet("[controller]")]
         [ProducesResponseType(typeof(IEnumerable<Dish>), StatusCodes.Status200OK)]
         public async Task<ActionResult<Dish>> GetAllDishes()
         {
@@ -29,7 +29,7 @@ namespace Restaurants.API.Controllers
             return Ok(dishes);
         }
 
-        [HttpGet("dishId",Name = "GetDish")]
+        [HttpGet("[controller]/{dishId}", Name = "GetDish")]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Dish>> GetDish(int dishId)
@@ -42,7 +42,7 @@ namespace Restaurants.API.Controllers
             return Ok(dish);
         }
 
-        [HttpPut]
+        [HttpPut("[controller]")]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateDish([FromBody] Dish dish)
         {
@@ -51,7 +51,7 @@ namespace Restaurants.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("[controller]")]
         [ProducesResponseType(typeof(IEnumerable<Dish>), StatusCodes.Status201Created)]
         public async Task<ActionResult<Dish>> CreateDish([FromBody] Dish dish)
         {
@@ -60,11 +60,24 @@ namespace Restaurants.API.Controllers
             return CreatedAtRoute("GetDish", new { id = dish.Id }, dish);
         }
 
-        [HttpDelete("dishId")]
+        [HttpDelete("[controller]/{dishId}")]
         [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
         public async Task<ActionResult<Dish>> DeleteDish(int dishId)
         {
             return Ok(await _repository.DeleteDish(dishId));
+        }
+
+        [HttpGet("Restaurants/{restaurantId}/[controller]")]
+        [ProducesResponseType(typeof(Dish), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dish), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Dish>> GetDishesByRestaurant(int restaurantId)
+        {
+            var restaurant = await _repository.GetDishesByRestaurantId(restaurantId);
+            if (restaurant == null)
+            {
+                return NotFound(null);
+            }
+            return Ok(restaurant);
         }
     }
 }

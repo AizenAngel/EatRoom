@@ -19,12 +19,10 @@ namespace Restaurants.API.Data
 
         public DbSet<Restaurant> restaurants { get; set; }
         public DbSet<Dish> dishes { get; set; }
-        public DbSet<Menu> menus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new RestaurantEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new MenuEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new DishEntityTypeConfiguration());
 
             base.OnModelCreating(modelBuilder);
