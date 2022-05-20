@@ -11,6 +11,7 @@ namespace Restaurants.API.Entities
         public string Name { get; set;}
         public string LogoFile { get; set; }
 
-        public List<Menu> menus { get; set; }
+        public List<Dish> Dishes { get; set; }
+
     }
 }

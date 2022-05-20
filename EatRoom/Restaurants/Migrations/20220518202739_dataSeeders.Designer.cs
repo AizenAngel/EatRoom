@@ -9,8 +9,8 @@ using Restaurants.API.Data;
 namespace Restaurants.API.Migrations
 {
     [DbContext(typeof(RestaurantsContext))]
-    [Migration("20220425195556_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220518202739_dataSeeders")]
+    partial class dataSeeders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,9 +21,6 @@ namespace Restaurants.API.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.HasSequence("Dishseq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("Menuseq")
                 .IncrementsBy(10);
 
             modelBuilder.HasSequence("Restaurantseq")
@@ -41,9 +38,6 @@ namespace Restaurants.API.Migrations
                         .HasColumnType("VARCHAR(500000)")
                         .HasColumnName("ImageFile");
 
-                    b.Property<int>("MenuId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)")
@@ -53,21 +47,6 @@ namespace Restaurants.API.Migrations
                         .HasColumnType("decimal")
                         .HasColumnName("Price");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuId");
-
-                    b.ToTable("Dish");
-                });
-
-            modelBuilder.Entity("Restaurants.API.Entities.Menu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:HiLoSequenceName", "Menuseq")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo);
-
                     b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
 
@@ -75,7 +54,7 @@ namespace Restaurants.API.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("Menu");
+                    b.ToTable("Dish");
                 });
 
             modelBuilder.Entity("Restaurants.API.Entities.Restaurant", b =>
@@ -102,19 +81,8 @@ namespace Restaurants.API.Migrations
 
             modelBuilder.Entity("Restaurants.API.Entities.Dish", b =>
                 {
-                    b.HasOne("Restaurants.API.Entities.Menu", "menu")
-                        .WithMany("Dishes")
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("menu");
-                });
-
-            modelBuilder.Entity("Restaurants.API.Entities.Menu", b =>
-                {
                     b.HasOne("Restaurants.API.Entities.Restaurant", "restaurant")
-                        .WithMany("menus")
+                        .WithMany("Dishes")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -122,14 +90,9 @@ namespace Restaurants.API.Migrations
                     b.Navigation("restaurant");
                 });
 
-            modelBuilder.Entity("Restaurants.API.Entities.Menu", b =>
-                {
-                    b.Navigation("Dishes");
-                });
-
             modelBuilder.Entity("Restaurants.API.Entities.Restaurant", b =>
                 {
-                    b.Navigation("menus");
+                    b.Navigation("Dishes");
                 });
 #pragma warning restore 612, 618
         }

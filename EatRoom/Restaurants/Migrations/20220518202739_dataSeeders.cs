@@ -14,24 +14,15 @@ namespace Restaurants.API.Migrations
                             columns: new[] { "Id", "Name" },
                             values: new object[] { 1001, "Food Factory" });
 
-            // Menu seeders
-
-            migrationBuilder.InsertData(table: "Menu",
-                             columns: new[] { "Id", "RestaurantId" },
-                             values: new object[] { 1000, 1000 });
-
-            migrationBuilder.InsertData(table: "Menu",
-                             columns: new[] { "Id", "RestaurantId" },
-                             values: new object[] { 1001, 1001 });
 
             // Dishes seeders
 
             migrationBuilder.InsertData(table: "Dish",
-                             columns: new[] { "Id", "Name", "Price", "MenuId" },
+                             columns: new[] { "Id", "Name", "Price", "RestaurantId" },
                              values: new object[] { 1000, "Neapolitan Pizza", "10", "1000" });
 
             migrationBuilder.InsertData(table: "Dish",
-                             columns: new[] { "Id", "Name", "Price", "MenuId" },
+                             columns: new[] { "Id", "Name", "Price", "RestaurantId" },
                              values: new object[] { 1001, "Chicago Pizza", "15", "1001" });
         }
 
@@ -41,3 +32,4 @@ namespace Restaurants.API.Migrations
         }
     }
 }
+
