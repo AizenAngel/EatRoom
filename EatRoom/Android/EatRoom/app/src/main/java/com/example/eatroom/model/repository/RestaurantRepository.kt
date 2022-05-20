@@ -2,47 +2,59 @@ package com.example.eatroom.model.repository
 
 import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.model.data.RestaurantRequest
+import com.example.eatroom.model.remote.RestaurantApi
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Inject
 
-class RestaurantRepository {
-    private val restaurants = mutableListOf(
-        Restaurant(
-            "Picerija",
-            mutableListOf(
-                Dish("Kapricoza", 800),
-                Dish("Madjarica", 1000)
-            )
-        ),
-        Restaurant(
-            "Rostilj",
-            mutableListOf(
-                Dish("Cevapi", 250),
-                Dish("Pljeskavica", 250)
-            )
-        )
-    )
-
-    fun getRestaurants() : List<Restaurant> {
-        return restaurants
+@ActivityScoped
+class RestaurantRepository @Inject constructor(
+    private val api: RestaurantApi
+) {
+    suspend fun getRestaurants(): MutableList<Restaurant> {
+        val response = try {
+            api.getRestaurantList()
+        } catch(e: Exception) {
+            e.printStackTrace()
+            mutableListOf<Restaurant>()
+        }
+        return response
     }
 
-    fun addRestaurant(restaurant: Restaurant) {
-        restaurants.add(restaurant)
+    suspend fun getRestaurantById(id: Int): Restaurant {
+        val response = try {
+            api.getRestaurant(id)
+        } catch(e: Exception) {
+            e.printStackTrace()
+            Restaurant("", -1)
+        }
+        return response
+    }
+
+    suspend fun addRestaurant(name: String): Restaurant {
+        val response = try {
+            api.addRestaurant(RestaurantRequest(name))
+        } catch(e: Exception) {
+            e.printStackTrace()
+            Restaurant("", -1)
+        }
+        return response
     }
 
     fun deleteRestaurant(restaurant: Restaurant) {
-        restaurants.remove(restaurants.first { it.name == restaurant.name })
+        //restaurants.remove(restaurants.first { it.name == restaurant.name })
     }
 
     fun getDishes(restaurant: Restaurant): List<Dish> {
-        return restaurants.first { it.name == restaurant.name }.dishes
+        return mutableListOf() //restaurants.first { it.name == restaurant.name }.menus[0].dishes
     }
 
     fun addDish(restaurant: Restaurant, dish: Dish) {
-        restaurants.first { it.name == restaurant.name }.dishes.add(dish)
+        //restaurants.first { it.name == restaurant.name }.menus[0].dishes.add(dish)
     }
 
     fun deleteDish(restaurant: Restaurant, dish: Dish) {
-        restaurants.first { it.name == restaurant.name }.dishes.remove(dish)
+        //restaurants.first { it.name == restaurant.name }.menus[0].dishes.remove(dish)
     }
 
     private val basket = mutableListOf<Dish>()

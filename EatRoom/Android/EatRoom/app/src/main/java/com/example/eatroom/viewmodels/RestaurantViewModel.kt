@@ -4,10 +4,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.repository.RestaurantRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,12 +18,26 @@ class RestaurantViewModel @Inject constructor(
     private val repository: RestaurantRepository
 ) : ViewModel() {
 
-    val restaurants = mutableStateOf(repository.getRestaurants())
-    val dishes = mutableStateListOf<Dish>()
+    var restaurants = mutableStateOf(mutableListOf<Restaurant>())
+    val menus = mutableStateListOf<Dish>()
     val basket = mutableStateListOf<Dish>()
 
+    init {
+        viewModelScope.launch {
+            restaurants.value = repository.getRestaurants()
+        }
+    }
+
+    fun getRestaurants() {
+        viewModelScope.launch {
+            restaurants.value = repository.getRestaurants()
+        }
+    }
+
     fun addNewRestaurant(name: String) {
-        repository.addRestaurant(Restaurant(name, mutableListOf()))
+        viewModelScope.launch {
+            restaurants.value.add(repository.addRestaurant(name))
+        }
     }
 
     fun deleteRestaurant(restaurant: Restaurant) {
@@ -28,8 +45,8 @@ class RestaurantViewModel @Inject constructor(
     }
 
     fun setDish(restaurant: Restaurant) {
-        dishes.clear()
-        dishes.addAll(repository.getDishes(restaurant))
+        menus.clear()
+        menus.addAll(repository.getDishes(restaurant))
     }
 
     fun addDishToRestaurant(restaurant: Restaurant, name: String, price: Int) {

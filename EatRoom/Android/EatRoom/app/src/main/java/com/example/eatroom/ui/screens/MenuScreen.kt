@@ -30,12 +30,12 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun MenuScreen(
     restaurant: Restaurant,
-    navigator: DestinationsNavigator,
     userType: UserType,
+    navigator: DestinationsNavigator,
     viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     viewModel.setDish(restaurant)
-    val dishes = viewModel.dishes
+    val menus = viewModel.menus
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -43,7 +43,7 @@ fun MenuScreen(
     ) {
         Text(text = "Menu list for ${restaurant.name}")
         LazyColumn() {
-            items(dishes) { dish ->
+            items(menus) { dish ->
                 DishCard(restaurant, dish, userType)
             }
         }

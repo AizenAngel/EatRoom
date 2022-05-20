@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Restaurant(
-    val name: String,
-    val id: Int
+data class Menu(
+    val id: Int,
+    val dishes: MutableList<Dish>
 ) : Parcelable

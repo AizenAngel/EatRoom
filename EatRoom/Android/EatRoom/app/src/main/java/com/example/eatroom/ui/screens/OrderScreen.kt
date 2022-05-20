@@ -34,7 +34,7 @@ fun OrderScreen(
         Text(text = "Order info")
         order?.let { it ->
             Text(text = it.restaurantName)
-            Text(text = "Price ${it.dishes.sumOf { it.price }}din")
+            Text(text = "Price ${it.menus.sumOf { it.price }}din")
         }
         Text(text = "${orderState.value} order")
         Button(onClick = {

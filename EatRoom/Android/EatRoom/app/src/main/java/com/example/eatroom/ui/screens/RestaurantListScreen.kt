@@ -11,8 +11,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.Restaurant
@@ -33,7 +35,8 @@ fun RestaurantScreen(
     viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     viewModel.clearBasket()
-    val restaurants by viewModel.restaurants
+    viewModel.getRestaurants()
+    val restaurants by remember { viewModel.restaurants }
 
     Column(
         modifier = Modifier.fillMaxSize(),

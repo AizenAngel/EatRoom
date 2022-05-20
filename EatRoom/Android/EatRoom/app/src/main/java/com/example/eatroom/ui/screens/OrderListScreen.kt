@@ -54,7 +54,7 @@ fun OrderCard(
         navigator.navigate(OrderScreenDestination(order.id))
     }) {
         Row {
-            Text(text = "${order.restaurantName} ${order.dishes.sumOf { it.price }}din ${order.state}")
+            Text(text = "${order.restaurantName} ${order.menus.sumOf { it.price }}din ${order.state}")
         }
     }
 }
