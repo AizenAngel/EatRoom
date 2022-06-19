@@ -17,4 +17,9 @@ interface RestaurantApi {
     suspend fun addRestaurant(
         @Body body: RestaurantRequest
     ): Restaurant
+
+    @DELETE("/api/v1/Restaurant/restaurantId")
+    suspend fun deleteRestaurant(
+        @Query("restautantId") id: Int
+    ) : Boolean
 }

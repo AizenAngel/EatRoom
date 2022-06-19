@@ -38,7 +38,7 @@ object AppModule {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(logging)
         return Retrofit.Builder()
-            .baseUrl("http://localhost:8002")
+            .baseUrl("http://10.0.2.2:8002")
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build())
             .build()

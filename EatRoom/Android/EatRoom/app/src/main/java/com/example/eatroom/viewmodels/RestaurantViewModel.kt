@@ -36,12 +36,14 @@ class RestaurantViewModel @Inject constructor(
 
     fun addNewRestaurant(name: String) {
         viewModelScope.launch {
-            restaurants.value.add(repository.addRestaurant(name))
+            repository.addRestaurant(name)
         }
     }
 
     fun deleteRestaurant(restaurant: Restaurant) {
-        repository.deleteRestaurant(restaurant)
+        viewModelScope.launch {
+            repository.deleteRestaurant(restaurant.id)
+        }
     }
 
     fun setDish(restaurant: Restaurant) {

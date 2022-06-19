@@ -31,18 +31,21 @@ class RestaurantRepository @Inject constructor(
         return response
     }
 
-    suspend fun addRestaurant(name: String): Restaurant {
-        val response = try {
+    suspend fun addRestaurant(name: String){
+        try {
             api.addRestaurant(RestaurantRequest(name))
         } catch(e: Exception) {
             e.printStackTrace()
-            Restaurant("", -1)
         }
-        return response
     }
 
-    fun deleteRestaurant(restaurant: Restaurant) {
-        //restaurants.remove(restaurants.first { it.name == restaurant.name })
+    suspend fun deleteRestaurant(id: Int) {
+        try {
+            val b = api.deleteRestaurant(id)
+            print(b)
+        } catch(e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun getDishes(restaurant: Restaurant): List<Dish> {
