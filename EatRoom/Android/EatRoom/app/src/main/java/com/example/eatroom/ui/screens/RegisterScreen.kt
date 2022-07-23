@@ -12,46 +12,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
-import com.example.eatroom.ui.screens.destinations.RegisterScreenDestination
 import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @ExperimentalMaterialApi
-@Destination(start = true)
+@Destination()
 @Composable
-fun LoginScreen(
+fun RegisterScreen(
     navigator: DestinationsNavigator
 ) {
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Select user type")
-        Button(
-            onClick = {
-                navigator.navigate(RestaurantScreenDestination(UserType.USER))
-            }
-        ) {
-            Text(text = "User")
-        }
-        Button(
-            onClick = {
-                navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
-            }
-        ) {
-            Text(text = "Owner")
-        }
-        Button(
-            onClick = {
-                navigator.navigate(OrderListScreenDestination())
-            }
-        ) {
-            Text(text = "Driver")
-        }
+        TextField(
+            value = firstName,
+            onValueChange = { firstName = it },
+            label = { Text("First Name") }
+        )
+        TextField(
+            value = lastName,
+            onValueChange = { lastName = it },
+            label = { Text("Last Name") }
+        )
         TextField(
             value = username,
             onValueChange = { username = it },
@@ -62,16 +53,19 @@ fun LoginScreen(
             onValueChange = { password = it },
             label = { Text("Password") }
         )
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") }
+        )
+        TextField(
+            value = phoneNumber,
+            onValueChange = { phoneNumber = it },
+            label = { Text("Phone number") }
+        )
         Button(
             onClick = {
                 navigator.navigate(OrderListScreenDestination())
-            }
-        ) {
-            Text(text = "Login")
-        }
-        Button(
-            onClick = {
-                navigator.navigate(RegisterScreenDestination())
             }
         ) {
             Text(text = "Register")
