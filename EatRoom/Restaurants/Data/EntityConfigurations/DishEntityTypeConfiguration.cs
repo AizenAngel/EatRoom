@@ -14,7 +14,7 @@ namespace Restaurants.API.Data.EntityConfigurations
         {
             builder.ToTable("Dish");
             builder.HasKey(o => o.Id);
-            builder.Property(o => o.Id).UseHiLo("Dishseq");
+            builder.Property(o => o.Id).UseHiLo("Dishseq").ValueGeneratedOnAdd();
 
             builder.Property<string>("Name")
                 .HasColumnType("VARCHAR(50)")

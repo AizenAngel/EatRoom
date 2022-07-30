@@ -11,7 +11,7 @@ namespace Restaurants.API.Repositories
 
         Task<Dish> GetDish(int id);
 
-        Task CreateDish(Dish dish);
+        Task<Dish> CreateDish(Dish dish);
 
         Task UpdateDish(Dish dish);
 

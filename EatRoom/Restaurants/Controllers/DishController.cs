@@ -55,9 +55,9 @@ namespace Restaurants.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Dish>), StatusCodes.Status201Created)]
         public async Task<ActionResult<Dish>> CreateDish([FromBody] Dish dish)
         {
-            await _repository.CreateDish(dish);
+            var createdDish = await _repository.CreateDish(dish);
 
-            return CreatedAtRoute("GetDish", new { id = dish.Id }, dish);
+            return CreatedAtRoute("GetDish", new { dishId = createdDish.Id }, createdDish);
         }
 
         [HttpDelete("[controller]/{dishId}")]

@@ -19,10 +19,12 @@ namespace Restaurants.API.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task CreateDish(Dish dish)
+        public async Task<Dish> CreateDish(Dish dish)
         {
-            await _context.dishes.AddAsync(dish);
+            var createdDish = await _context.dishes.AddAsync(dish);
             await _context.SaveChangesAsync();
+
+            return createdDish.Entity;
         }
 
         public async Task<bool> DeleteDish(int id)
