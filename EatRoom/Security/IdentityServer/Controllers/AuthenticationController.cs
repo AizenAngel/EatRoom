@@ -43,6 +43,14 @@ namespace IdentityServer.Controllers
         }
 
         [HttpPost("[action]")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> RegisterCustomer([FromBody] NewUserDto newUser)
+        {
+            return await RegisterNewUserWithRoles(newUser, new string[] { "Customer" });
+        }
+
+        [HttpPost("[action]")]
         [ProducesResponseType(typeof(AuthenticationModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] UserCredentialsDto userCredentials)

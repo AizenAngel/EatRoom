@@ -1,16 +1,20 @@
 services:
   identityserver:
     build:
-      context: C:\Users\bozam\OneDrive\Desktop\EatRoom\EatRoom
+      context: C:\Users\bozam\OneDrive\Desktop\EatRoom
       dockerfile: Security/IdentityServer/Dockerfile
     container_name: identityserver
+    depends_on:
+      mssql:
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings:IdentityConnectionString: Server=mssql;Database=IdentityDb;User
         Id=sa;Password=bozaCar12345rs2;
     image: identityserver
     ports:
-    - target: 80
+    - published: 4000
+      target: 80
   mssql:
     container_name: mssql
     environment:
