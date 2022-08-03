@@ -47,7 +47,14 @@ namespace IdentityServer.Services
             user.RefreshTokens.Add(refreshToken);
             await _userManager.UpdateAsync(user);
 
-            return new AuthenticationModel { AccessToken = accessToken, RefreshToken = refreshToken.Token };
+            var role = await GetUserRole(user);
+            return new AuthenticationModel { AccessToken = accessToken, RefreshToken = refreshToken.Token, Role = role};
+        }
+
+        public async Task<string> GetUserRole(User user)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            return roles[0];
         }
 
         public async Task RemoveRefreshToken(User user, string refreshToken)
