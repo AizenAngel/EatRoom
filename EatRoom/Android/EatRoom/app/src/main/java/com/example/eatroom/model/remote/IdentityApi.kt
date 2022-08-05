@@ -15,6 +15,11 @@ interface IdentityApi {
         @Body body: RegisterRequest
     )
 
+    @POST("/api/v1/Authentication/RegisterCustomer")
+    suspend fun registerCustomer(
+        @Body body: RegisterRequest
+    )
+
     @POST("/api/v1/Authentication/Login")
     suspend fun login(
         @Body body: LoginRequest

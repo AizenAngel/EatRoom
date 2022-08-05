@@ -1,18 +1,20 @@
 package com.example.eatroom.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.Role.Companion.RadioButton
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eatroom.model.data.RegisterRequest
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
 import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
+import com.example.eatroom.viewmodels.LoginViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -20,7 +22,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination()
 @Composable
 fun RegisterScreen(
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
@@ -28,6 +31,16 @@ fun RegisterScreen(
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
+    val selectedValue = remember { mutableStateOf("Customer") }
+
+    val isSelectedItem: (String) -> Boolean = { selectedValue.value == it }
+    val onChangeState: (String) -> Unit = { selectedValue.value = it }
+
+    val items = listOf("Customer", "Administrator", "Deliverer")
+    val success = viewModel.success
+    if (success)
+        navigator.popBackStack()
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -63,9 +76,36 @@ fun RegisterScreen(
             onValueChange = { phoneNumber = it },
             label = { Text("Phone number") }
         )
+        Row() {
+            items.forEach { item ->
+                Row(
+                    modifier = Modifier.selectable(
+                        selected = isSelectedItem(item),
+                        onClick = { onChangeState(item) },
+                        role = Role.RadioButton
+                    )
+                ) {
+                    RadioButton(
+                        selected = isSelectedItem(item),
+                        onClick = null
+                    )
+                    Text( text = item )
+                }
+            }
+        }
         Button(
             onClick = {
-                navigator.navigate(OrderListScreenDestination())
+                viewModel.register(
+                    RegisterRequest(
+                        firstName,
+                        lastName,
+                        username,
+                        password,
+                        email,
+                        phoneNumber
+                    ),
+                    selectedValue.value
+                )
             }
         ) {
             Text(text = "Register")

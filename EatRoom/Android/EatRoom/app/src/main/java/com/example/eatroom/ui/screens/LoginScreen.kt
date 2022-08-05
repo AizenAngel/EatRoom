@@ -10,10 +10,14 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
 import com.example.eatroom.ui.screens.destinations.RegisterScreenDestination
 import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
+import com.example.eatroom.viewmodels.LoginViewModel
+import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -21,37 +25,22 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination(start = true)
 @Composable
 fun LoginScreen(
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var userType = viewModel.userType
+    when (userType) {
+        UserType.DRIVER -> navigator.navigate(OrderListScreenDestination())
+        UserType.USER -> navigator.navigate(RestaurantScreenDestination(UserType.USER))
+        UserType.OWNER -> navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Select user type")
-        Button(
-            onClick = {
-                navigator.navigate(RestaurantScreenDestination(UserType.USER))
-            }
-        ) {
-            Text(text = "User")
-        }
-        Button(
-            onClick = {
-                navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
-            }
-        ) {
-            Text(text = "Owner")
-        }
-        Button(
-            onClick = {
-                navigator.navigate(OrderListScreenDestination())
-            }
-        ) {
-            Text(text = "Driver")
-        }
         TextField(
             value = username,
             onValueChange = { username = it },
@@ -64,7 +53,7 @@ fun LoginScreen(
         )
         Button(
             onClick = {
-                navigator.navigate(OrderListScreenDestination())
+                viewModel.login(username, password)
             }
         ) {
             Text(text = "Login")
