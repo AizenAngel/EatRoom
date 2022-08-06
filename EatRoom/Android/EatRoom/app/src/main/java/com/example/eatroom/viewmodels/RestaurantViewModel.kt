@@ -1,48 +1,60 @@
 package com.example.eatroom.viewmodels
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eatroom.model.data.Dish
 import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.model.data.RestaurantRequest
+import com.example.eatroom.model.remote.RestaurantApi
 import com.example.eatroom.model.repository.RestaurantRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantViewModel @Inject constructor(
-    private val repository: RestaurantRepository
+    private val repository: RestaurantRepository,
+    private val api: RestaurantApi
 ) : ViewModel() {
 
-    var restaurants = mutableStateOf(mutableListOf<Restaurant>())
+    var restaurants by mutableStateOf(mutableListOf<Restaurant>())
     val menus = mutableStateListOf<Dish>()
     val basket = mutableStateListOf<Dish>()
 
     init {
-        viewModelScope.launch {
-            restaurants.value = repository.getRestaurants()
-        }
+        getRestaurants()
     }
 
     fun getRestaurants() {
         viewModelScope.launch {
-            restaurants.value = repository.getRestaurants()
+            val response = try {
+                api.getRestaurantList()
+            } catch(e: Exception) {
+                e.printStackTrace()
+                mutableListOf<Restaurant>()
+            }
+            restaurants = response
         }
     }
 
     fun addNewRestaurant(name: String) {
         viewModelScope.launch {
-            repository.addRestaurant(name)
+            try {
+                api.addRestaurant(RestaurantRequest(name))
+            } catch(e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
     fun deleteRestaurant(restaurant: Restaurant) {
         viewModelScope.launch {
-            repository.deleteRestaurant(restaurant.id)
+            try {
+                api.deleteRestaurant(restaurant.id)
+            } catch(e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

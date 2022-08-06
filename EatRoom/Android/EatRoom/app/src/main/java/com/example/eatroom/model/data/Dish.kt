@@ -5,6 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Dish(
+    val id: Int,
     val name: String,
-    val price: Int
+    val imageFile: String,
+    val price: Int,
+    val restaurantId: Int
 ) : Parcelable

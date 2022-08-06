@@ -36,7 +36,7 @@ fun RestaurantScreen(
 ) {
     viewModel.clearBasket()
     viewModel.getRestaurants()
-    val restaurants by remember { viewModel.restaurants }
+    val restaurants = viewModel.restaurants
 
     Column(
         modifier = Modifier.fillMaxSize(),
