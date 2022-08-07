@@ -21,6 +21,7 @@ import com.example.eatroom.model.data.Order
 import com.example.eatroom.model.data.OrderState
 import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.ui.screens.destinations.OrderScreenDestination
+import com.example.eatroom.viewmodels.MenuViewModel
 import com.example.eatroom.viewmodels.OrderViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -32,7 +33,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun BasketScreen(
     restaurant: Restaurant,
     navigator: DestinationsNavigator,
-    viewModel: RestaurantViewModel = hiltViewModel(mainActivity()),
+    viewModel: MenuViewModel = hiltViewModel(mainActivity()),
     orderViewModel: OrderViewModel = hiltViewModel()
 ) {
     val basket = viewModel.basket
@@ -61,7 +62,7 @@ fun BasketScreen(
 @Composable
 fun BasketItemCard(
     dish: Dish,
-    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
+    viewModel: MenuViewModel = hiltViewModel(mainActivity())
 ) {
     Card() {
         Row() {

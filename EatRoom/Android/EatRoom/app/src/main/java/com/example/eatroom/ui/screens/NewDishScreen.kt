@@ -9,7 +9,9 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eatroom.model.data.DishRequest
 import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.viewmodels.MenuViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -19,7 +21,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun NewDishScreen(
     navigator: DestinationsNavigator,
-    viewModel: RestaurantViewModel = hiltViewModel(),
+    viewModel: MenuViewModel = hiltViewModel(),
     restaurant: Restaurant
 ) {
     var text by remember { mutableStateOf("") }
@@ -37,7 +39,14 @@ fun NewDishScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         Button(onClick = {
-            viewModel.addDishToRestaurant(restaurant, text, price.toInt())
+            viewModel.addDishToRestaurant(
+                DishRequest(
+                text,
+                null,
+                price.toInt(),
+                restaurant.id
+            )
+            )
             navigator.popBackStack()
         }) {
             Text(text = "Add dish")

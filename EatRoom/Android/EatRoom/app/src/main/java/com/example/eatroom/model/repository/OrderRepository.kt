@@ -6,10 +6,7 @@ import com.example.eatroom.model.data.OrderState
 
 class OrderRepository {
 
-    private val orders = mutableListOf(
-        Order(1, "Picerija", listOf(Dish("pica", 1000)), OrderState.PREPARING),
-        Order(2, "Rostilj", listOf(Dish("cevapi", 500)), OrderState.PREPARING)
-    )
+    private val orders = mutableListOf<Order>()
 
     fun getOrders(): MutableList<Order> {
         return orders

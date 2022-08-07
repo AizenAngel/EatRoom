@@ -34,7 +34,6 @@ fun RestaurantScreen(
     navigator: DestinationsNavigator,
     viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
-    viewModel.clearBasket()
     viewModel.getRestaurants()
     val restaurants = viewModel.restaurants
 

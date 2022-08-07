@@ -25,7 +25,7 @@ interface RestaurantApi {
         @Query("restautantId") id: Int
     ) : Boolean
 
-    @GET("/api/v1/Restaurant/{restaurantId}/Dish")
+    @GET("/api/v1/Restaurants/{restaurantId}/Dish")
     suspend fun getDishesForRestaurant(
         @Path("restaurantId") id : Int
     ): MutableList<Dish>
