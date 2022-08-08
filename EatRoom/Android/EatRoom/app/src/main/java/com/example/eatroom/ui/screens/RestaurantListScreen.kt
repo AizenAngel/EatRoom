@@ -1,5 +1,7 @@
 package com.example.eatroom.ui.screens
 
+import android.graphics.BitmapFactory
+import android.util.Base64
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +16,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.data.UserType
@@ -25,6 +30,7 @@ import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.util.*
 
 @ExperimentalMaterialApi
 @Destination
@@ -70,6 +76,22 @@ fun RestaurantCard(
             navigator.navigate(MenuScreenDestination(restaurant, userType))
         }
     ) {
-        Text(text = restaurant.name)
+        Column() {
+            if (restaurant.logoFile != null) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(Base64.decode(
+                            restaurant.logoFile
+                                .substring(restaurant.logoFile
+                                .indexOf(",")  + 1),
+                            Base64.DEFAULT)
+                        )
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = null
+                )
+            }
+            Text(text = restaurant.name)
+        }
     }
 }
