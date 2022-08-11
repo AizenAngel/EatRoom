@@ -1,5 +1,6 @@
 package com.example.eatroom
 
+import com.example.eatroom.model.remote.BasketApi
 import com.example.eatroom.model.remote.IdentityApi
 import com.example.eatroom.model.remote.RestaurantApi
 import com.example.eatroom.model.repository.OrderRepository
@@ -51,5 +52,20 @@ object AppModule {
             .client(httpClient.build())
             .build()
             .create(IdentityApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBasketApi(): BasketApi {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor(logging)
+        return Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:8005")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient.build())
+            .build()
+            .create(BasketApi::class.java)
     }
 }

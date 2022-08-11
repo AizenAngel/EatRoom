@@ -16,10 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
-import com.example.eatroom.model.data.Dish
-import com.example.eatroom.model.data.Order
-import com.example.eatroom.model.data.OrderState
-import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.model.data.*
 import com.example.eatroom.ui.screens.destinations.OrderScreenDestination
 import com.example.eatroom.viewmodels.MenuViewModel
 import com.example.eatroom.viewmodels.OrderViewModel
@@ -32,10 +29,12 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun BasketScreen(
     restaurant: Restaurant,
+    username: String? = null,
     navigator: DestinationsNavigator,
     viewModel: MenuViewModel = hiltViewModel(mainActivity()),
     orderViewModel: OrderViewModel = hiltViewModel()
 ) {
+    viewModel.getBasket(username)
     val basket = viewModel.basket
 
     Column(
@@ -45,15 +44,15 @@ fun BasketScreen(
     ) {
         Text(text = "Basket")
         LazyColumn() {
-            items(basket) { dish ->
-                BasketItemCard(dish)
+            items(basket.items) { dish ->
+                BasketItemCard(dish, username)
             }
         }
         Button(onClick = {
-            orderViewModel.addOrder(Order(0, restaurant.name, basket.toList(), OrderState.PREPARING))
+            orderViewModel.addOrder(Order(0, restaurant.name, listOf()/*TODO*/, OrderState.PREPARING))
             navigator.navigate(OrderScreenDestination(0))
         }) {
-            Text(text = "Order for ${viewModel.basketPrice()}din")
+            Text(text = "Order for ${basket.totalPrice}din")
         }
     }
 }
@@ -61,7 +60,8 @@ fun BasketScreen(
 @ExperimentalMaterialApi
 @Composable
 fun BasketItemCard(
-    dish: Dish,
+    dish: BasketItem,
+    username: String?,
     viewModel: MenuViewModel = hiltViewModel(mainActivity())
 ) {
     Card() {
@@ -72,7 +72,7 @@ fun BasketItemCard(
             }
 
             Button(onClick = {
-                viewModel.deleteBasketItem(dish)
+                viewModel.deleteBasketItem(dish, username)
             }) {
                 Text(text = "Delete item")
             }

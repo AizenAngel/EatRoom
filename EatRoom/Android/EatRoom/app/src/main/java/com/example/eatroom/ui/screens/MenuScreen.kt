@@ -16,10 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
-import com.example.eatroom.model.data.Dish
-import com.example.eatroom.model.data.DishRequest
-import com.example.eatroom.model.data.Restaurant
-import com.example.eatroom.model.data.UserType
+import com.example.eatroom.model.data.*
 import com.example.eatroom.ui.screens.destinations.BasketScreenDestination
 import com.example.eatroom.ui.screens.destinations.NewDishScreenDestination
 import com.example.eatroom.viewmodels.MenuViewModel
@@ -33,12 +30,17 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun MenuScreen(
     restaurant: Restaurant,
     userType: UserType,
+    username: String? = null,
     navigator: DestinationsNavigator,
     viewModel: MenuViewModel = hiltViewModel(mainActivity()),
     restaurantViewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     viewModel.getDishes(restaurant)
+    viewModel.getBasket(username)
+
     val dishes = viewModel.dishes
+    val basket = viewModel.basket
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -47,7 +49,7 @@ fun MenuScreen(
         Text(text = "Menu list for ${restaurant.name}")
         LazyColumn() {
             items(dishes) { dish ->
-                DishCard(dish, userType, restaurant)
+                DishCard(dish, userType, restaurant, username)
             }
         }
         if (userType == UserType.OWNER) {
@@ -67,9 +69,9 @@ fun MenuScreen(
         }
         if (userType == UserType.USER) {
             Button(onClick = {
-                navigator.navigate(BasketScreenDestination(restaurant))
+                navigator.navigate(BasketScreenDestination(restaurant, username))
             }) {
-                Text(text = "Basket ${viewModel.basketPrice()}")
+                Text(text = "Basket ${basket.totalPrice}")
             }
         }
     }
@@ -81,6 +83,7 @@ fun DishCard(
     dish: Dish,
     userType: UserType,
     restaurant: Restaurant,
+    username: String?,
     viewModel: MenuViewModel = hiltViewModel(mainActivity())
 ) {
     Card() {
@@ -91,7 +94,7 @@ fun DishCard(
             }
             if (userType == UserType.USER){
                 Button(onClick = {
-                    viewModel.addItemToBasket(dish)
+                    viewModel.addItemToBasket(BasketItem(dish.name, dish.price), username)
                 }) {
                     Text(text = "Add to basket")
                 }

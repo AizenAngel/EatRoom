@@ -5,9 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eatroom.model.data.Dish
-import com.example.eatroom.model.data.DishRequest
-import com.example.eatroom.model.data.Restaurant
+import com.example.eatroom.model.data.*
+import com.example.eatroom.model.remote.BasketApi
 import com.example.eatroom.model.remote.RestaurantApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,11 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MenuViewModel @Inject constructor(
-    private val api: RestaurantApi
+    private val api: RestaurantApi,
+    private val basketApi: BasketApi
 ) : ViewModel() {
 
     var dishes by mutableStateOf(mutableListOf<Dish>())
-    var basket by mutableStateOf(mutableListOf<Dish>())
+    var basket by mutableStateOf(Basket("", 0, mutableListOf()))
 
     fun getDishes(restaurant: Restaurant) {
         viewModelScope.launch {
@@ -54,19 +54,53 @@ class MenuViewModel @Inject constructor(
         }
     }
 
-    fun clearBasket() {
-        basket.clear()
+    fun getBasket(username: String?) {
+        if (username != null) {
+            viewModelScope.launch {
+                val response = try {
+                    basketApi.getBasket(username)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Basket("", 0, mutableListOf())
+                }
+                basket = response
+            }
+        }
     }
 
-    fun addItemToBasket(dish: Dish) {
-        basket.add(dish)
+    private fun putBasket(username: String?) {
+        if (username != null) {
+            viewModelScope.launch {
+                val response = try {
+                    basketApi.putBasket(BasketRequest(username, basket.items))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Basket(username, 0, mutableListOf())
+                }
+                basket = response
+            }
+        }
     }
 
-    fun basketPrice(): Int {
-        return basket.sumOf { it.price } ?: 0
+    fun deleteBasket(username: String?) {
+        if (username != null) {
+            viewModelScope.launch {
+                try {
+                    basketApi.deleteBasket(username)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
-    fun deleteBasketItem(dish: Dish) {
-        basket.remove(dish)
+    fun addItemToBasket(dish: BasketItem, username: String?) {
+        basket.items.add(dish)
+        putBasket(username)
+    }
+
+    fun deleteBasketItem(dish: BasketItem, username: String?) {
+        basket.items.remove(dish)
+        putBasket(username)
     }
 }

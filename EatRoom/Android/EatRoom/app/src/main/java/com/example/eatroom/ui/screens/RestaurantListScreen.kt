@@ -1,6 +1,5 @@
 package com.example.eatroom.ui.screens
 
-import android.graphics.BitmapFactory
 import android.util.Base64
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,12 +11,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -26,11 +22,10 @@ import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.MenuScreenDestination
 import com.example.eatroom.ui.screens.destinations.NewRestaurantScreenDestination
-import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
+import com.example.eatroom.viewmodels.MenuViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import java.util.*
 
 @ExperimentalMaterialApi
 @Destination
@@ -38,9 +33,12 @@ import java.util.*
 fun RestaurantScreen(
     userType: UserType,
     navigator: DestinationsNavigator,
-    viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
+    username: String? = null,
+    viewModel: RestaurantViewModel = hiltViewModel(mainActivity()),
+    menuViewModel: MenuViewModel = hiltViewModel(mainActivity())
 ) {
     viewModel.getRestaurants()
+    menuViewModel.deleteBasket(username)
     val restaurants = viewModel.restaurants
 
     Column(
@@ -51,7 +49,7 @@ fun RestaurantScreen(
         Text(text = "Restaurant list")
         LazyColumn() {
             items(restaurants) { restaurant ->
-                RestaurantCard(navigator, restaurant, userType)
+                RestaurantCard(navigator, restaurant, userType, username)
             }
         }
         if (userType == UserType.OWNER){
@@ -69,11 +67,12 @@ fun RestaurantScreen(
 fun RestaurantCard(
     navigator: DestinationsNavigator,
     restaurant: Restaurant,
-    userType: UserType
+    userType: UserType,
+    username: String?
 ) {
     Card(
         onClick = {
-            navigator.navigate(MenuScreenDestination(restaurant, userType))
+            navigator.navigate(MenuScreenDestination(restaurant, userType, username))
         }
     ) {
         Column() {

@@ -33,7 +33,7 @@ fun LoginScreen(
     var userType = viewModel.userType
     when (userType) {
         UserType.DRIVER -> navigator.navigate(OrderListScreenDestination())
-        UserType.USER -> navigator.navigate(RestaurantScreenDestination(UserType.USER))
+        UserType.USER -> navigator.navigate(RestaurantScreenDestination(UserType.USER, username))
         UserType.OWNER -> navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
     }
     Column(
