@@ -28,6 +28,8 @@ services:
     build:
       context: .
       dockerfile: Ordering.API/Dockerfile
+  orderdb:
+    image: postgres
 
 volumes:
   mssql_data:

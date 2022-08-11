@@ -12,7 +12,7 @@ namespace Ordering.API.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderDish> builder)
         {
-            builder.ToTable("Order");
+            builder.ToTable("OrderDish");
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("OrderDishseq").ValueGeneratedOnAdd();
         }

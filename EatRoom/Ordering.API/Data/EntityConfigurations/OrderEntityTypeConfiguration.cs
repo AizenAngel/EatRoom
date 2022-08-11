@@ -15,7 +15,7 @@ namespace Ordering.API.Data.EntityConfigurations
             builder.ToTable("Order");
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("Orderseq").ValueGeneratedOnAdd();
-            builder.Property<decimal>("Price")
+            builder.Property<double>("Price")
                             .HasColumnType("decimal")
                             .HasColumnName("Price")
                             .IsRequired();

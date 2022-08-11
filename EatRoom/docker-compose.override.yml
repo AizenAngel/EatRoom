@@ -54,11 +54,20 @@ services:
   
 
   ordering.api:
+    container_name: ordering.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DatabaseSettings:ConnectionString="Server=orderdb;Port=5433;Database=order;User Id=root;Password=root;"
     ports:
-      - "80"
-      - "443"
+      - "8003:80"
+  orderdb:
+    container_name: orderdb
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=order
+    restart: always
+    ports:
+      - "5433:5432"
     volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - postgres_data:/var/lib/postgresql/data/
