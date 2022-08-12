@@ -33,10 +33,11 @@ class RestaurantViewModel @Inject constructor(
         }
     }
 
-    fun addNewRestaurant(name: String) {
+    fun addNewRestaurant(name: String, logo: String?) {
         viewModelScope.launch {
             try {
-                api.addRestaurant(RestaurantRequest(name))
+                api.addRestaurant(RestaurantRequest(name, logo))
+                getRestaurants()
             } catch(e: Exception) {
                 e.printStackTrace()
             }
@@ -47,6 +48,7 @@ class RestaurantViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 api.deleteRestaurant(restaurant.id)
+                getRestaurants()
             } catch(e: Exception) {
                 e.printStackTrace()
             }

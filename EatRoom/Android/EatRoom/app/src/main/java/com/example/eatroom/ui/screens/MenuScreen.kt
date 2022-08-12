@@ -1,5 +1,6 @@
 package com.example.eatroom.ui.screens
 
+import android.util.Base64
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,7 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.*
 import com.example.eatroom.ui.screens.destinations.BasketScreenDestination
@@ -35,7 +39,7 @@ fun MenuScreen(
     viewModel: MenuViewModel = hiltViewModel(mainActivity()),
     restaurantViewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
-    viewModel.getDishes(restaurant)
+    viewModel.getDishes(restaurant.id)
     viewModel.getBasket(username)
 
     val dishes = viewModel.dishes
@@ -90,6 +94,21 @@ fun DishCard(
         Row() {
             Column() {
                 Text(dish.name)
+                if (dish.imageFile != null) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(
+                                Base64.decode(
+                                    dish.imageFile
+                                        .substring(dish.imageFile
+                                        .indexOf(",")  + 1),
+                                Base64.DEFAULT)
+                            )
+                            .crossfade(true)
+                            .build(),
+                        contentDescription = null
+                    )
+                }
                 Text(dish.price.toString() + "din")
             }
             if (userType == UserType.USER){

@@ -21,10 +21,10 @@ class MenuViewModel @Inject constructor(
     var dishes by mutableStateOf(mutableListOf<Dish>())
     var basket by mutableStateOf(Basket("", 0, mutableListOf()))
 
-    fun getDishes(restaurant: Restaurant) {
+    fun getDishes(restaurantId: Int) {
         viewModelScope.launch {
             val response = try {
-                api.getDishesForRestaurant(restaurant.id)
+                api.getDishesForRestaurant(restaurantId)
             } catch(e: Exception) {
                 e.printStackTrace()
                 mutableListOf<Dish>()
@@ -37,6 +37,7 @@ class MenuViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 api.addDish(request)
+                getDishes(request.restaurantId)
             } catch(e: Exception) {
                 e.printStackTrace()
             }
@@ -47,7 +48,7 @@ class MenuViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 api.deleteDish(dish.id)
-                getDishes(restaurant)
+                getDishes(restaurant.id)
             } catch(e: Exception) {
                 e.printStackTrace()
             }
