@@ -52,3 +52,22 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   
+
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings:ConnectionString="Server=orderdb;Port=5432;Database=order;User Id=root;Password=root;"
+    ports:
+      - "8003:80"
+  orderdb:
+    container_name: orderdb
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=order
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data2:/var/lib/postgresql/data/

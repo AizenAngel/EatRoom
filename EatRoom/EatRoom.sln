@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{6A05F0F0-659B-4793-BA0F-49D3A14778BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "Security\IdentityServer\IdentityServer.csproj", "{6E6C5445-723E-4630-946D-3E3BD71C4B0B}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A27B2B53-83FF-4A6B-91B5-27888DCC521E}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{20DC84B8-350A-404A-AB9D-00673778E1F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{31F04CC0-E642-4855-A7CE-58A67B7744BF}"
 EndProject
@@ -16,6 +16,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Restaurants", "Restaurants", "{7E3A1C03-F8A2-43BB-A6EE-A730FDF85385}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket\Basket.API\Basket.API.csproj", "{7BA62F0D-295E-4AB6-8779-BFF5DA63A032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{B9F8884C-3457-443C-9D05-919CE5271C25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.API", "Ordering.API\Ordering.API.csproj", "{5F61B010-C8C9-42D3-B785-6F7244075C79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +31,10 @@ Global
 		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E6C5445-723E-4630-946D-3E3BD71C4B0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A27B2B53-83FF-4A6B-91B5-27888DCC521E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,10 +43,10 @@ Global
 		{7BA62F0D-295E-4AB6-8779-BFF5DA63A032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BA62F0D-295E-4AB6-8779-BFF5DA63A032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BA62F0D-295E-4AB6-8779-BFF5DA63A032}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20DC84B8-350A-404A-AB9D-00673778E1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F61B010-C8C9-42D3-B785-6F7244075C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F61B010-C8C9-42D3-B785-6F7244075C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F61B010-C8C9-42D3-B785-6F7244075C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F61B010-C8C9-42D3-B785-6F7244075C79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +55,8 @@ Global
 		{6E6C5445-723E-4630-946D-3E3BD71C4B0B} = {6A05F0F0-659B-4793-BA0F-49D3A14778BF}
 		{F6C0A1E0-A06D-47D4-8EFD-D363C70377E3} = {7E3A1C03-F8A2-43BB-A6EE-A730FDF85385}
 		{7E3A1C03-F8A2-43BB-A6EE-A730FDF85385} = {31F04CC0-E642-4855-A7CE-58A67B7744BF}
+		{B9F8884C-3457-443C-9D05-919CE5271C25} = {31F04CC0-E642-4855-A7CE-58A67B7744BF}
+		{5F61B010-C8C9-42D3-B785-6F7244075C79} = {B9F8884C-3457-443C-9D05-919CE5271C25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62495BC4-98E2-4C71-BED9-1740FC84BD63}

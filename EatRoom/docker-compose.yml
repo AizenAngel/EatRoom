@@ -23,9 +23,18 @@ services:
   restaurantsdb:
     image: postgres
 
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: .
+      dockerfile: Ordering.API/Dockerfile
+  orderdb:
+    image: postgres
+
 volumes:
   mssql_data:
   postgres_data:
-  
+  postgres_data2:
     
+
 

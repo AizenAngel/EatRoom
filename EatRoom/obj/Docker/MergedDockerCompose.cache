@@ -1,7 +1,7 @@
 services:
   basket.api:
     build:
-      context: C:\Users\GDi16\EatRoom\EatRoom
+      context: C:\Users\Luka\Desktop\EatRoom\EatRoom
       dockerfile: Basket/Basket.API/Dockerfile
     container_name: basket.api
     depends_on:
@@ -23,7 +23,7 @@ services:
     restart: always
   identityserver:
     build:
-      context: C:\Users\GDi16\EatRoom\EatRoom
+      context: C:\Users\Luka\Desktop\EatRoom\EatRoom
       dockerfile: Security/IdentityServer/Dockerfile
     container_name: identityserver
     environment:
@@ -46,9 +46,35 @@ services:
     restart: always
     volumes:
     - mssql_data:/var/opt/mssql/data:rw
+  orderdb:
+    container_name: orderdb
+    environment:
+      POSTGRES_DB: order
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+    image: postgres
+    ports:
+    - published: 5433
+      target: 5432
+    restart: always
+    volumes:
+    - postgres_data2:/var/lib/postgresql/data/:rw
+  ordering.api:
+    build:
+      context: C:\Users\Luka\Desktop\EatRoom\EatRoom
+      dockerfile: Ordering.API/Dockerfile
+    container_name: ordering.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:ConnectionString: '"Server=orderdb;Port=5432;Database=order;User
+        Id=root;Password=root;"'
+    image: orderingapi
+    ports:
+    - published: 8003
+      target: 80
   restaurants.api:
     build:
-      context: C:\Users\GDi16\EatRoom\EatRoom
+      context: C:\Users\Luka\Desktop\EatRoom\EatRoom
       dockerfile: Restaurants/Dockerfile
     container_name: restaurants.api
     environment:
@@ -76,3 +102,4 @@ version: '3.4'
 volumes:
   mssql_data: {}
   postgres_data: {}
+  postgres_data2: {}
