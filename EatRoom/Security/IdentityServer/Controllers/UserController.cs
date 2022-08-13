@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace IdentityServer.Controllers
 {
-    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class UserController: ControllerBase
@@ -44,6 +43,23 @@ namespace IdentityServer.Controllers
         {
             var users = await _userManager.Users.FirstOrDefaultAsync(user => user.UserName == username);
             return Ok(_mapper.Map<UserDetails>(users));
+        }
+
+        [HttpGet("user/{id}")]
+        [ProducesResponseType(typeof(UserRoleDetails), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<UserRoleDetails>> GetUserById(string id)
+        {
+            try
+            {
+                var user = await _userManager.Users.FirstOrDefaultAsync(user => user.Id == id);
+                var roles = await _userManager.GetRolesAsync(user);
+                return Ok(new UserRoleDetails { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, Role = roles[0] });
+            } catch(Exception err)
+            {
+                return BadRequest();
+            }
+
         }
 
     }

@@ -28,16 +28,20 @@ namespace Ordering.API.Controllers
 
         [HttpPost("[controller]")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status201Created)]
-        public async Task<ActionResult<Order>> CreateDish([FromBody] Order order)
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] Order order)
         {
             var createdOrder = await _repository.CreateOrder(order);
-
+            if (createdOrder == null)
+            {
+                return BadRequest();
+            }
             return CreatedAtRoute("GetOrder", new { orderId = createdOrder.Id }, createdOrder);
         }
 
         [HttpGet("[controller]/delivered/{deliveredId}")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Order>> GetAllOrdersByDeliveredId(int deliveredId)
+        public async Task<ActionResult<Order>> GetAllOrdersByDeliveredId(string deliveredId)
         {
             var orders = await _repository.GetAllOrdersByDeliveredId(deliveredId);
             return Ok(orders);
@@ -45,7 +49,7 @@ namespace Ordering.API.Controllers
 
         [HttpGet("[controller]/user/{userId}")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Order>> GetAllOrdersByUserId(int userId)
+        public async Task<ActionResult<Order>> GetAllOrdersByUserId(string userId)
         {
             var orders = await _repository.GetAllOrdersByUserId(userId);
             return Ok(orders);
@@ -53,10 +57,11 @@ namespace Ordering.API.Controllers
 
         [HttpPut("[controller]")]
         [ProducesResponseType(typeof(Order), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateOrder([FromBody] Order order)
         {
-            await _repository.UpdateOrder(order);
-            return Ok();
+            var response = await _repository.UpdateOrder(order);
+            return response == -1 ? BadRequest() : Ok();
         }
 
         [HttpGet("[controller]/order/{orderId}", Name = "GetOrder")]

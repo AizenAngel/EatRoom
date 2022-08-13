@@ -21,10 +21,10 @@ namespace Ordering.API.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<string>(type: "varchar (450)", nullable: false),
                     Dishes = table.Column<string>(type: "text", nullable: false),
                     State = table.Column<int>(type: "int", nullable: false),
-                    DelivererId = table.Column<int>(type: "integer", nullable: false)
+                    DelivererId = table.Column<string>(type: "varchar (450)", nullable: false)
                 },
                 constraints: table =>
                 {
