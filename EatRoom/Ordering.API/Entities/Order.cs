@@ -9,9 +9,9 @@ namespace Ordering.API.Entities
     {
 		public int Id { get; set; }
 		public int UserId { get; set; }
-		public int RestarauntId { get; set; }
+		public string Dishes { get; set; }
 		
-		public double Price { get; set; }
+		// public double Price { get; set; }
 	    public StateEnum State { get; set; }
 		public int DelivererId { get; set; }
 	}

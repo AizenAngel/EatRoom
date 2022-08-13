@@ -15,11 +15,11 @@ namespace Ordering.API.Data
         }
 
         public DbSet<Order> orders { get; set; }
-        public DbSet<OrderDish> orderDishes { get; set; }
+        //public DbSet<OrderDish> orderDishes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new OrderDishEntityTypeConfiguration());
+            // modelBuilder.ApplyConfiguration(new OrderDishEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new OrderEntityTypeConfiguration());
 
             base.OnModelCreating(modelBuilder);

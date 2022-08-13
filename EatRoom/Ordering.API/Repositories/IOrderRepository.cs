@@ -11,11 +11,13 @@ namespace Ordering.API.Repositories
 
         public Task<IEnumerable<Order>> GetAllOrdersByState(StateEnum state);
 
-        public Task CreateOrder(Order order);
+        public Task<Order> CreateOrder(Order order);
 
         public Task<IEnumerable<Order>> GetAllOrdersByDeliveredId(int deliveredId);
 
         public Task<IEnumerable<Order>> GetAllOrdersByUserId(int userId);
+
+        public Task<Order> GetOrderById(int id);
 
         public Task UpdateOrder(Order order);
 

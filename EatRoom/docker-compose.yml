@@ -34,7 +34,7 @@ services:
 volumes:
   mssql_data:
   postgres_data:
-  
+  postgres_data2:
     
 
 

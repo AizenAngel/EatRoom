@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Ordering.API.Repositories;
 
 namespace Ordering.API
 {
@@ -30,6 +31,7 @@ namespace Ordering.API
         {
 
             services.AddControllers();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddDbContext<OrderContext>(options => options.UseNpgsql(Configuration["DatabaseSettings:ConnectionString"]));
 
             services.AddSwaggerGen(c =>

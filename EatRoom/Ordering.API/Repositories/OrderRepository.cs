@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-//using Restaurants.API.Data;
 using Ordering.API.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,29 +18,37 @@ namespace Ordering.API.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Task<IEnumerable<Order>> GetAllOrdersByState(StateEnum state)
+        public async Task<IEnumerable<Order>> GetAllOrdersByState(StateEnum state)
         {
-            throw new NotImplementedException();
+            return await _context.orders.Where(o => o.State == state).ToListAsync();
         }
 
-        public Task CreateOrder(Order order)
+        public async Task<Order> CreateOrder(Order order)
         {
-            throw new NotImplementedException();
+            var createdOrder = await _context.orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return createdOrder.Entity;
         }
 
-        public Task<IEnumerable<Order>> GetAllOrdersByDeliveredId(int deliveredId)
+        public async Task<IEnumerable<Order>> GetAllOrdersByDeliveredId(int deliveredId)
         {
-            throw new NotImplementedException();
+            return await _context.orders.Where(o => o.DelivererId == deliveredId).ToListAsync();
         }
 
-        public Task<IEnumerable<Order>> GetAllOrdersByUserId(int userId)
+        public async Task<IEnumerable<Order>> GetAllOrdersByUserId(int userId)
         {
-            throw new NotImplementedException();
+            return await _context.orders.Where(o => o.UserId == userId).ToListAsync();
         }
 
-        public Task UpdateOrder(Order order)
+        public async Task<Order> GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.orders.FindAsync(id);
+        }
+
+        public async  Task UpdateOrder(Order order)
+        {
+            _context.Entry(order).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

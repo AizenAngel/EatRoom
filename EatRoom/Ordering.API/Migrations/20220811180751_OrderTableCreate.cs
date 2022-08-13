@@ -7,9 +7,9 @@ namespace Ordering.API.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "OrderDishseq",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "OrderDishseq",
+            //    incrementBy: 10);
 
             migrationBuilder.CreateSequence(
                 name: "Orderseq",
@@ -22,8 +22,7 @@ namespace Ordering.API.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    RestarauntId = table.Column<int>(type: "integer", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric(38,17)", nullable: false),
+                    Dishes = table.Column<string>(type: "text", nullable: false),
                     State = table.Column<int>(type: "int", nullable: false),
                     DelivererId = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -52,11 +51,11 @@ namespace Ordering.API.Migrations
             migrationBuilder.DropTable(
                 name: "Order");
 
-            migrationBuilder.DropTable(
-                name: "OrderDish");
+            //migrationBuilder.DropTable(
+            //    name: "OrderDish");
 
-            migrationBuilder.DropSequence(
-                name: "OrderDishseq");
+            //migrationBuilder.DropSequence(
+            //    name: "OrderDishseq");
 
             migrationBuilder.DropSequence(
                 name: "Orderseq");

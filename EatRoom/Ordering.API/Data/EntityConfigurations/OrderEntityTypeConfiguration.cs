@@ -15,13 +15,17 @@ namespace Ordering.API.Data.EntityConfigurations
             builder.ToTable("Order");
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("Orderseq").ValueGeneratedOnAdd();
-            builder.Property<double>("Price")
-                            .HasColumnType("decimal")
-                            .HasColumnName("Price")
-                            .IsRequired();
+            //builder.Property<double>("Price")
+            //                .HasColumnType("decimal")
+            //                .HasColumnName("Price")
+            //                .IsRequired();
             builder.Property<StateEnum>("State")
                             .HasColumnType("int")
                             .HasColumnName("State")
+                            .IsRequired();
+            builder.Property<string>("Dishes")
+                            .HasColumnType("text")
+                            .HasColumnName("Dishes")
                             .IsRequired();
         }
     }

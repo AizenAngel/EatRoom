@@ -18,8 +18,8 @@ namespace Ordering.API.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.HasSequence("OrderDishseq")
-                .IncrementsBy(10);
+            //modelBuilder.HasSequence("OrderDishseq")
+            //    .IncrementsBy(10);
 
             modelBuilder.HasSequence("Orderseq")
                 .IncrementsBy(10);
@@ -35,12 +35,8 @@ namespace Ordering.API.Migrations
                     b.Property<int>("DelivererId")
                         .HasColumnType("integer");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric(38,17)")
-                        .HasColumnName("Price");
-
-                    b.Property<int>("RestarauntId")
-                        .HasColumnType("integer");
+                    b.Property<int>("Dishes")
+                        .HasColumnType("text");
 
                     b.Property<int>("State")
                         .HasColumnType("int")
@@ -54,24 +50,24 @@ namespace Ordering.API.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("Ordering.API.Entities.OrderDish", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:HiLoSequenceName", "OrderDishseq")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo);
+            //modelBuilder.Entity("Ordering.API.Entities.OrderDish", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("integer")
+            //            .HasAnnotation("Npgsql:HiLoSequenceName", "OrderDishseq")
+            //            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<int>("DishId")
-                        .HasColumnType("integer");
+            //        b.Property<int>("DishId")
+            //            .HasColumnType("integer");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
+            //        b.Property<int>("OrderId")
+            //            .HasColumnType("integer");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.ToTable("OrderDish");
-                });
+            //        b.ToTable("OrderDish");
+            //    });
 #pragma warning restore 612, 618
         }
     }
