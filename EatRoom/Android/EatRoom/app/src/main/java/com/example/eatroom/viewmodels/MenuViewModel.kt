@@ -18,7 +18,7 @@ class MenuViewModel @Inject constructor(
     private val basketApi: BasketApi
 ) : ViewModel() {
 
-    var dishes by mutableStateOf(mutableListOf<Dish>())
+    var dishes by mutableStateOf(listOf<Dish>())
     var basket by mutableStateOf(Basket("", 0, mutableListOf()))
 
     fun getDishes(restaurantId: Int) {

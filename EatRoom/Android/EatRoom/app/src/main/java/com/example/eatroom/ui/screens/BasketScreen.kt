@@ -49,7 +49,7 @@ fun BasketScreen(
             }
         }
         Button(onClick = {
-            orderViewModel.addOrder(Order(0, restaurant.name, listOf()/*TODO*/, OrderState.PREPARING))
+            orderViewModel.addOrder(OrderRequest("TODO", listOf()/*TODO*/, OrderState.PREPARING))
             navigator.navigate(OrderScreenDestination(0))
         }) {
             Text(text = "Order for ${basket.totalPrice}din")

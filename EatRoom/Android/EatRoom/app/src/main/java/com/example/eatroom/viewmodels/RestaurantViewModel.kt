@@ -15,7 +15,7 @@ class RestaurantViewModel @Inject constructor(
     private val api: RestaurantApi
 ) : ViewModel() {
 
-    var restaurants by mutableStateOf(mutableListOf<Restaurant>())
+    var restaurants by mutableStateOf(listOf<Restaurant>())
 
     init {
         getRestaurants()

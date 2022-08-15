@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.Order
 import com.example.eatroom.ui.screens.destinations.MenuScreenDestination
 import com.example.eatroom.ui.screens.destinations.OrderScreenDestination
@@ -26,9 +27,10 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun OrderListScreen(
     navigator: DestinationsNavigator,
-    viewModel: OrderViewModel = hiltViewModel()
+    viewModel: OrderViewModel = hiltViewModel(mainActivity())
 ) {
-    val orders by viewModel.orders
+    viewModel.getOrders()
+    val orders = viewModel.orders
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -54,7 +56,7 @@ fun OrderCard(
         navigator.navigate(OrderScreenDestination(order.id))
     }) {
         Row {
-            Text(text = "${order.restaurantName} ${order.menus.sumOf { it.price }}din ${order.state}")
+            Text(text = "TODO restaurant name, price din ${order.state}")
         }
     }
 }

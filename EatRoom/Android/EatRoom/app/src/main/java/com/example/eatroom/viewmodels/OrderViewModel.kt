@@ -1,34 +1,65 @@
 package com.example.eatroom.viewmodels
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.eatroom.model.data.Order
+import com.example.eatroom.model.data.OrderRequest
 import com.example.eatroom.model.data.OrderState
-import com.example.eatroom.model.repository.OrderRepository
+import com.example.eatroom.model.remote.OrderApi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(
-    private val repository: OrderRepository
+    private val api: OrderApi
 ) : ViewModel() {
 
-    var order = mutableStateOf<Order?>(null)
-    var orders = mutableStateOf(repository.getOrders())
+    var order by mutableStateOf<Order?>(null)
+    var orders by mutableStateOf(listOf<Order>())
 
-    fun setOrder(id: Int){
-        order.value = repository.getOrderById(id)
+    fun getOrders(){
+        viewModelScope.launch {
+            val response = try {
+                api.getOrdersByState(0)
+            } catch(e: Exception) {
+                e.printStackTrace()
+                listOf<Order>()
+            }
+            orders = response
+        }
     }
 
-    fun addOrder(order: Order){
-        repository.addOrder(order)
+    fun setOrder(id: Int){
+        viewModelScope.launch {
+            val response = try {
+                api.getOrderById(id)
+            } catch(e: Exception) {
+                e.printStackTrace()
+                null
+            }
+            order = response
+        }
+    }
+
+    fun addOrder(order: OrderRequest){
+        viewModelScope.launch {
+            try {
+                api.createOrder(order)
+            } catch(e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     fun changeState(): OrderState {
-        if (order.value?.state == OrderState.PREPARING)
-            order.value?.state = OrderState.DELIVERING
+        if (order?.state == OrderState.PREPARING)
+            order?.state = OrderState.DELIVERING
         else
-            order.value?.state = OrderState.DELIVERED
-        return order.value?.state ?: OrderState.PREPARING
+            order?.state = OrderState.DELIVERED
+        return order?.state ?: OrderState.PREPARING
     }
 }
