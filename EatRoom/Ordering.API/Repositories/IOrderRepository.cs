@@ -9,15 +9,15 @@ namespace Ordering.API.Repositories
     public interface IOrderRepository
     {
 
-        public Task<IEnumerable<Order>> GetAllOrdersByState(StateEnum state);
+        public Task<IEnumerable<OrderResponse>> GetAllOrdersByState(StateEnum state);
 
         public Task<Order> CreateOrder(Order order);
 
-        public Task<IEnumerable<Order>> GetAllOrdersByDeliveredId(string deliveredId);
+        public Task<IEnumerable<OrderResponse>> GetAllOrdersByDeliveredId(string deliveredId);
 
-        public Task<IEnumerable<Order>> GetAllOrdersByUserId(string userId);
+        public Task<IEnumerable<OrderResponse>> GetAllOrdersByUserId(string userId);
 
-        public Task<Order> GetOrderById(int id);
+        public Task<OrderResponse> GetOrderById(int id);
 
         public Task<int> UpdateOrder(Order order);
 

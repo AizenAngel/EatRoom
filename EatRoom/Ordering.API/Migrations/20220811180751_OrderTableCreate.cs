@@ -24,7 +24,7 @@ namespace Ordering.API.Migrations
                     UserId = table.Column<string>(type: "varchar (450)", nullable: false),
                     Dishes = table.Column<string>(type: "text", nullable: false),
                     State = table.Column<int>(type: "int", nullable: false),
-                    DelivererId = table.Column<string>(type: "varchar (450)", nullable: false)
+                    DelivererId = table.Column<string>(type: "varchar (450)", nullable: true)
                 },
                 constraints: table =>
                 {

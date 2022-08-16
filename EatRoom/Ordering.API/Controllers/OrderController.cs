@@ -15,14 +15,19 @@ namespace Ordering.API.Controllers
         private readonly IOrderRepository _repository;
 
         public OrderController(IOrderRepository repository)
-        {
+        {   
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
         [HttpGet("[controller]/{state}")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Order>> GetAllOrdersByState(StateEnum state)
         {
             var orders = await _repository.GetAllOrdersByState(state);
+            if (orders == null)
+            {
+                return BadRequest("Bad state");
+            }
             return Ok(orders);
         }
 
@@ -41,17 +46,27 @@ namespace Ordering.API.Controllers
 
         [HttpGet("[controller]/delivered/{deliveredId}")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Order>> GetAllOrdersByDeliveredId(string deliveredId)
         {
             var orders = await _repository.GetAllOrdersByDeliveredId(deliveredId);
+            if (orders == null)
+            {
+                return BadRequest("Bad deliveredId");
+            }
             return Ok(orders);
         }
 
         [HttpGet("[controller]/user/{userId}")]
         [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Order>> GetAllOrdersByUserId(string userId)
         {
             var orders = await _repository.GetAllOrdersByUserId(userId);
+            if (orders == null)
+            {
+                return BadRequest("Bad userId");
+            }
             return Ok(orders);
         }
 

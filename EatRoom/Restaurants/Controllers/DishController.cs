@@ -15,10 +15,13 @@ namespace Restaurants.API.Controllers
     public class DishController : ControllerBase
     {
         private readonly IDishRepository _repository;
+        private readonly IRestaurantRepository _resRepository;
 
-        public DishController(IDishRepository repository)
+
+        public DishController(IDishRepository repository, IRestaurantRepository resRepository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _resRepository = resRepository ?? throw new ArgumentNullException(nameof(resRepository));
         }
 
         [HttpGet("[controller]")]
@@ -78,6 +81,15 @@ namespace Restaurants.API.Controllers
                 return NotFound(null);
             }
             return Ok(restaurant);
+        }
+
+        [HttpGet("dish/getRestaurantByDishId/{dishId}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public async Task<ActionResult<string>> GetRestaurantByDishId(int dishId)
+        {
+            var dish = await _repository.GetDish(dishId);
+            var restaurant = await _resRepository.GetRestaurant(dish.RestaurantId);
+            return Ok(restaurant.Name);
         }
     }
 }

@@ -33,7 +33,8 @@ namespace Ordering.API.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<int>("DelivererId")
-                        .HasColumnType("varchar(450)");
+                        .HasColumnType("varchar(450)")
+                        .IsRequired(false);
 
                     b.Property<int>("Dishes")
                         .HasColumnType("text");
