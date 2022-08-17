@@ -54,28 +54,39 @@ namespace Ordering.API.Repositories
         public async Task<IEnumerable<OrderResponse>> GetAllOrdersByDeliveredId(string deliveredId)
         {
              List<OrderResponse> orderResponse = new List<OrderResponse>();
-             var order = await _context.orders.Where(o => o.DelivererId == deliveredId).ToListAsync();
-             if (order == null)
-            {
+             var orders = await _context.orders.Where(o => o.DelivererId == deliveredId || o.DelivererId=="-1").ToListAsync();
+             if (orders.Count == 0)
+             {
                 return null;
+             }
+
+            foreach (var order in orders)
+            {
+                var dishId = Int32.Parse(order.Dishes.Split(',')[0]);
+                var restaurantName = await client.GetAsync($"{OrderRepository.RestaurantURL}/api/v1/dish/getRestaurantByDishId/{dishId}").Result.Content.ReadAsStringAsync();
+                orderResponse.Add(new OrderResponse { Id = order.Id, State = order.State, UserId = order.UserId, Dishes = order.Dishes, DelivererId = order.DelivererId, RestaurantName = restaurantName });
             }
-             var dishId = Int32.Parse(order[0].Dishes.Split(',')[0]);
-             var restaurantName = await client.GetAsync($"{OrderRepository.RestaurantURL}/api/v1/dish/getRestaurantByDishId/{dishId}").Result.Content.ReadAsStringAsync();
-             orderResponse.Add(new OrderResponse { Id = order[0].Id, State = order[0].State, UserId = order[0].UserId, Dishes = order[0].Dishes, DelivererId = order[0].DelivererId, RestaurantName = restaurantName });
-             return orderResponse;
+            
+            return orderResponse;
         }
 
         public async Task<IEnumerable<OrderResponse>> GetAllOrdersByUserId(string userId)
         {
-            var order = await _context.orders.Where(o => o.UserId == userId).ToListAsync();
-            if (order == null)
+            var orders = await _context.orders.Where(o => o.UserId == userId).ToListAsync();
+            if (orders.Count == 0)
             {
                 return null;
             }
+
             List<OrderResponse> orderResponse = new List<OrderResponse>();
-            var dishId = Int32.Parse(order[0].Dishes.Split(',')[0]);
-            var restaurantName = await client.GetAsync($"{OrderRepository.RestaurantURL}/api/v1/dish/getRestaurantByDishId/{dishId}").Result.Content.ReadAsStringAsync();
-            orderResponse.Add(new OrderResponse { Id = order[0].Id, State = order[0].State, UserId = order[0].UserId, Dishes = order[0].Dishes, DelivererId = order[0].DelivererId, RestaurantName = restaurantName });
+            foreach (var order in orders)
+            {
+                
+                var dishId = Int32.Parse(order.Dishes.Split(',')[0]);
+                var restaurantName = await client.GetAsync($"{OrderRepository.RestaurantURL}/api/v1/dish/getRestaurantByDishId/{dishId}").Result.Content.ReadAsStringAsync();
+                orderResponse.Add(new OrderResponse { Id = order.Id, State = order.State, UserId = order.UserId, Dishes = order.Dishes, DelivererId = order.DelivererId, RestaurantName = restaurantName });
+            }
+
             return orderResponse;
         }
 

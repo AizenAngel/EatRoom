@@ -89,6 +89,7 @@ namespace Restaurants.API.Controllers
         {
             var dish = await _repository.GetDish(dishId);
             var restaurant = await _resRepository.GetRestaurant(dish.RestaurantId);
+
             return Ok(restaurant.Name);
         }
     }
