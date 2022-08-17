@@ -22,6 +22,7 @@ import com.example.eatroom.model.data.Restaurant
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.MenuScreenDestination
 import com.example.eatroom.ui.screens.destinations.NewRestaurantScreenDestination
+import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
 import com.example.eatroom.viewmodels.MenuViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -57,6 +58,13 @@ fun RestaurantScreen(
                 navigator.navigate(NewRestaurantScreenDestination())
             }) {
                 Text(text = "Add Restaurant")
+            }
+        }
+        if (userType == UserType.USER) {
+            Button(onClick = {
+                navigator.navigate(OrderListScreenDestination(username!!, userType, false))
+            }) {
+                Text(text = "My orders")
             }
         }
     }

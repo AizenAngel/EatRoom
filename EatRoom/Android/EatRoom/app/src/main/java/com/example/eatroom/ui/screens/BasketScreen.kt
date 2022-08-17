@@ -28,14 +28,20 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun BasketScreen(
-    restaurant: Restaurant,
     username: String? = null,
+    userType: UserType,
     navigator: DestinationsNavigator,
     viewModel: MenuViewModel = hiltViewModel(mainActivity()),
     orderViewModel: OrderViewModel = hiltViewModel()
 ) {
     viewModel.getBasket(username)
+    viewModel.getUserId(username)
     val basket = viewModel.basket
+    val userId = viewModel.userId
+    if (orderViewModel.order != null) {
+        navigator.navigate(OrderScreenDestination(orderViewModel.order!!.id, userType, username!!))
+        orderViewModel.order = null
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -49,8 +55,13 @@ fun BasketScreen(
             }
         }
         Button(onClick = {
-            orderViewModel.addOrder(OrderRequest("TODO", listOf()/*TODO*/, OrderState.PREPARING))
-            navigator.navigate(OrderScreenDestination(0))
+            orderViewModel.addOrder(OrderRequest(
+                userId,
+                basket.items.map { it.id }.joinToString(),
+                0,
+                "-1")
+            )
+            viewModel.deleteBasket(username)
         }) {
             Text(text = "Order for ${basket.totalPrice}din")
         }

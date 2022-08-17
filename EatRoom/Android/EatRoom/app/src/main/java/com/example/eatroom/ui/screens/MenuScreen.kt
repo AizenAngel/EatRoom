@@ -73,7 +73,7 @@ fun MenuScreen(
         }
         if (userType == UserType.USER) {
             Button(onClick = {
-                navigator.navigate(BasketScreenDestination(restaurant, username))
+                navigator.navigate(BasketScreenDestination(username, userType))
             }) {
                 Text(text = "Basket ${basket.totalPrice}")
             }
@@ -113,7 +113,7 @@ fun DishCard(
             }
             if (userType == UserType.USER){
                 Button(onClick = {
-                    viewModel.addItemToBasket(BasketItem(dish.name, dish.price), username)
+                    viewModel.addItemToBasket(BasketItem(dish.name, dish.price, dish.id), username)
                 }) {
                     Text(text = "Add to basket")
                 }

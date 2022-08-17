@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eatroom.model.data.*
 import com.example.eatroom.model.remote.BasketApi
+import com.example.eatroom.model.remote.IdentityApi
 import com.example.eatroom.model.remote.RestaurantApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,11 +16,25 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(
     private val api: RestaurantApi,
-    private val basketApi: BasketApi
+    private val basketApi: BasketApi,
+    private val identityApi: IdentityApi
 ) : ViewModel() {
 
     var dishes by mutableStateOf(listOf<Dish>())
     var basket by mutableStateOf(Basket("", 0, mutableListOf()))
+    var userId by mutableStateOf("")
+
+    fun getUserId(username: String?){
+        viewModelScope.launch {
+            val response = try {
+                identityApi.getUser(username!!).id
+            } catch(e: Exception) {
+                e.printStackTrace()
+                ""
+            }
+            userId = response
+        }
+    }
 
     fun getDishes(restaurantId: Int) {
         viewModelScope.launch {

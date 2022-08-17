@@ -32,9 +32,18 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var userType = viewModel.userType
     when (userType) {
-        UserType.DRIVER -> navigator.navigate(OrderListScreenDestination())
-        UserType.USER -> navigator.navigate(RestaurantScreenDestination(UserType.USER, username))
-        UserType.OWNER -> navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
+        UserType.DRIVER -> {
+            navigator.navigate(OrderListScreenDestination(username, UserType.DRIVER, true))
+            viewModel.userType = null
+        }
+        UserType.USER -> {
+            navigator.navigate(RestaurantScreenDestination(UserType.USER, username))
+            viewModel.userType = null
+        }
+        UserType.OWNER -> {
+            navigator.navigate(RestaurantScreenDestination(UserType.OWNER))
+            viewModel.userType = null
+        }
     }
     Column(
         modifier = Modifier.fillMaxSize(),

@@ -21,9 +21,14 @@ interface OrderApi {
         @Body body: Order
     ): Order
 
-    @GET("/api/Order/deliverer/{delivererId}")
+    @GET("/api/Order/delivered/{deliveredId}")
     suspend fun getOrdersForDeliverer(
-        @Path("delivererId") id : String
+        @Path("deliveredId") id : String
+    ): List<Order>
+
+    @GET("/api/Order/user/{userId}")
+    suspend fun getOrdersForUser(
+        @Path("userId") id : String
     ): List<Order>
 
     @GET("/api/Order/order/{orderId}")

@@ -34,4 +34,9 @@ interface RestaurantApi {
     suspend fun deleteDish(
         @Path("dishId") id : Int
     ) : Boolean
+
+    @GET("/api/v1/Dish/{dishId}")
+    suspend fun getDish(
+        @Path("dishId") id : Int
+    ): Dish
 }

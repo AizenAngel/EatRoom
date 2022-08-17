@@ -4,7 +4,6 @@ import com.example.eatroom.model.remote.BasketApi
 import com.example.eatroom.model.remote.IdentityApi
 import com.example.eatroom.model.remote.OrderApi
 import com.example.eatroom.model.remote.RestaurantApi
-import com.example.eatroom.model.repository.OrderRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    @Provides
-    @Singleton
-    fun provideOrderRepository(): OrderRepository {
-        return OrderRepository()
-    }
 
     @Provides
     @Singleton
