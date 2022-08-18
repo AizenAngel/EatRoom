@@ -1,21 +1,22 @@
 package com.example.eatroom.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.mainActivity
 import com.example.eatroom.model.data.UserType
 import com.example.eatroom.ui.screens.destinations.OrderListScreenDestination
 import com.example.eatroom.ui.screens.destinations.RegisterScreenDestination
 import com.example.eatroom.ui.screens.destinations.RestaurantScreenDestination
+import com.example.eatroom.ui.theme.EatRoomTheme
 import com.example.eatroom.viewmodels.LoginViewModel
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -50,24 +51,38 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextField(
+        Text(
+            text = "EatRoom",
+            fontSize = 50.sp,
+            color = MaterialTheme.colors.secondary,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.height(50.dp))
+        Text(text = "Login", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = username,
             onValueChange = { username = it },
             label = { Text("Username") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") }
         )
+        Spacer(modifier = Modifier.height(30.dp))
         Button(
+            modifier = Modifier.size(width = 280.dp, height = 50.dp),
             onClick = {
                 viewModel.login(username, password)
             }
         ) {
             Text(text = "Login")
         }
+        Spacer(modifier = Modifier.height(20.dp))
         Button(
+            modifier = Modifier.size(width = 280.dp, height = 50.dp),
             onClick = {
                 navigator.navigate(RegisterScreenDestination())
             }

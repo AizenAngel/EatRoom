@@ -1,23 +1,22 @@
 package com.example.eatroom.ui.screens
 
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.util.Base64
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.material.Button
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -25,9 +24,6 @@ import com.example.eatroom.mainActivity
 import com.example.eatroom.viewmodels.RestaurantViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.withContext
-import java.io.File
-import kotlin.coroutines.coroutineContext
 
 @RequiresApi(Build.VERSION_CODES.P)
 @ExperimentalMaterialApi
@@ -47,23 +43,35 @@ fun NewRestaurantScreen(
         imageUri = uri
     }
 
-    Column() {
-        TextField(
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Add new restaurant", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = text,
             onValueChange = { text = it },
             label = { Text("Name") }
         )
-        Button(onClick = {
-            launcher.launch("image/*")
-        }) {
+        Spacer(modifier = Modifier.height(15.dp))
+        Button(
+            modifier = Modifier.size(width = 280.dp, height = 50.dp),
+            onClick = {
+                launcher.launch("image/*")
+            }
+        ) {
             Text(text = "Pick image")
         }
+        Spacer(modifier = Modifier.height(10.dp))
         imageUri?.let {
             logo = "data:image/jpeg;base64," + Base64.encodeToString(
                 LocalContext.current.contentResolver.openInputStream(imageUri!!)?.readBytes(),
                 Base64.DEFAULT
             )
             AsyncImage(
+                modifier = Modifier.size(width = 280.dp, height = 280.dp),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(imageUri)
                     .crossfade(true)
@@ -71,11 +79,20 @@ fun NewRestaurantScreen(
                 contentDescription = null
             )
         }
-        Button(onClick = {
-            viewModel.addNewRestaurant(text, logo)
-            navigator.popBackStack()
-        }) {
-            Text(text = "Add restaurant")
+    }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.End
+    ) {
+        FloatingActionButton(
+            modifier = Modifier.padding(15.dp),
+            onClick = {
+                viewModel.addNewRestaurant(text, logo)
+                navigator.popBackStack()
+            }
+        ) {
+            Icon(Icons.Filled.Check, "")
         }
     }
 }

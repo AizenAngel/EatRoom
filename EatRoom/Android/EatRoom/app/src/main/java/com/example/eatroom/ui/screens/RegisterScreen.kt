@@ -8,7 +8,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.Role.Companion.RadioButton
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eatroom.model.data.RegisterRequest
 import com.example.eatroom.model.data.UserType
@@ -46,36 +48,46 @@ fun RegisterScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextField(
+        Text(text = "Register", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = firstName,
             onValueChange = { firstName = it },
             label = { Text("First Name") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = lastName,
             onValueChange = { lastName = it },
             label = { Text("Last Name") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = username,
             onValueChange = { username = it },
             label = { Text("Username") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") }
         )
-        TextField(
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedTextField(
             value = phoneNumber,
             onValueChange = { phoneNumber = it },
             label = { Text("Phone number") }
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(text = "Choose user type:")
+        Spacer(modifier = Modifier.height(10.dp))
         Row() {
             items.forEach { item ->
                 Row(
@@ -90,10 +102,13 @@ fun RegisterScreen(
                         onClick = null
                     )
                     Text( text = item )
+                    Spacer(modifier = Modifier.width(10.dp))
                 }
             }
         }
+        Spacer(modifier = Modifier.height(30.dp))
         Button(
+            modifier = Modifier.size(width = 280.dp, height = 50.dp),
             onClick = {
                 viewModel.register(
                     RegisterRequest(
