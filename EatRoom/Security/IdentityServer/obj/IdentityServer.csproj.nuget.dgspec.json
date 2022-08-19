@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GDi16\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj": {}
+    "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GDi16\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj": {
+    "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GDi16\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
         "projectName": "IdentityServer",
-        "projectPath": "C:\\Users\\GDi16\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
-        "packagesPath": "C:\\Users\\GDi16\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GDi16\\EatRoom\\EatRoom\\Security\\IdentityServer\\obj\\",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\IdentityServer.csproj",
+        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\EatRoom\\EatRoom\\Security\\IdentityServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GDi16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,12 +91,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.15, 5.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -105,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

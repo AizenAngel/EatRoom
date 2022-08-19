@@ -54,7 +54,7 @@ namespace Ordering.API.Repositories
         public async Task<IEnumerable<OrderResponse>> GetAllOrdersByDeliveredId(string deliveredId)
         {
              List<OrderResponse> orderResponse = new List<OrderResponse>();
-             var orders = await _context.orders.Where(o => o.DelivererId == deliveredId || o.DelivererId=="-1").ToListAsync();
+             var orders = await _context.orders.Where(o => o.DelivererId == deliveredId).ToListAsync();
              if (orders.Count == 0)
              {
                 return null;
@@ -72,7 +72,7 @@ namespace Ordering.API.Repositories
 
         public async Task<IEnumerable<OrderResponse>> GetAllOrdersByUserId(string userId)
         {
-            var orders = await _context.orders.Where(o => o.UserId == userId).ToListAsync();
+            var orders = await _context.orders.Where(o => o.UserId == userId || o.DelivererId == "-1").ToListAsync();
             if (orders.Count == 0)
             {
                 return null;
