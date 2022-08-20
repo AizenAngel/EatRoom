@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EatRoom",
+    "\\EatRoom\\Basket",
+    "\\EatRoom\\Basket\\Basket.API",
+    "\\EatRoom\\Basket\\Basket.API\\Repository"
+  ],
+  "SelectedNode": "\\EatRoom\\Basket\\Basket.API\\Repository\\BasketRepository.cs",
+  "PreviewInSolutionExplorer": false
+}

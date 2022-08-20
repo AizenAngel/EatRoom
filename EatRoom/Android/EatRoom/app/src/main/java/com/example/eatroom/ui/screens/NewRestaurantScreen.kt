@@ -34,13 +34,19 @@ fun NewRestaurantScreen(
     viewModel: RestaurantViewModel = hiltViewModel(mainActivity())
 ) {
     var text by remember { mutableStateOf("") }
-    var imageUri by remember { mutableStateOf<Uri?>(null) }
     var logo by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        imageUri = uri
+    ) { result ->
+        val item = context.contentResolver.openInputStream(result!!)
+        val bytes = item?.readBytes()
+        logo = "data:image/jpeg;base64," + Base64.encodeToString(
+            bytes,
+            Base64.DEFAULT
+        )
+        item?.close()
     }
 
     Column(
@@ -65,15 +71,14 @@ fun NewRestaurantScreen(
             Text(text = "Pick image")
         }
         Spacer(modifier = Modifier.height(10.dp))
-        imageUri?.let {
-            logo = "data:image/jpeg;base64," + Base64.encodeToString(
-                LocalContext.current.contentResolver.openInputStream(imageUri!!)?.readBytes(),
-                Base64.DEFAULT
-            )
+        if (logo != null) {
             AsyncImage(
                 modifier = Modifier.size(width = 280.dp, height = 280.dp),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(imageUri)
+                    .data(Base64.decode(
+                        logo!!.substring(logo!!.indexOf(",") + 1),
+                        Base64.DEFAULT)
+                    )
                     .crossfade(true)
                     .build(),
                 contentDescription = null

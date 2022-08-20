@@ -121,6 +121,7 @@ fun RegisterScreen(
                     ),
                     selectedValue.value
                 )
+                navigator.popBackStack()
             }
         ) {
             Text(text = "Register")

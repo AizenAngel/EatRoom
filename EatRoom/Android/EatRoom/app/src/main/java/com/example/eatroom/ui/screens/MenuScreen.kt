@@ -88,7 +88,7 @@ fun MenuScreen(
             FloatingActionButton(
                 modifier = Modifier.padding(end = 15.dp),
                 onClick = {
-                    navigator.navigate(NewDishScreenDestination(restaurant))
+                    navigator.navigate(NewDishScreenDestination(restaurant.id))
                 }
             ) {
                 Icon(Icons.Filled.Add, "")
