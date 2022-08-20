@@ -1,6 +1,5 @@
 package com.example.eatroom.ui.screens
 
-import android.net.Uri
 import android.os.Build
 import android.util.Base64
 import androidx.activity.compose.rememberLauncherForActivityResult
