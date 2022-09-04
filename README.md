@@ -9,7 +9,7 @@ Frontend requires installing Android Studio to run. There are two ways to run th
 
 For emulator just clone project and follow this instructions: https://developer.android.com/studio/run/emulator, and then run the project in Android Studio
 
-Steps for seting up applicaton on physical device:
+Steps for setting up applicaton on physical device:
 1. Clone project
 2. Run backend on your computer
 3. Connect your phone and computer on same network and set network on computer to privete
@@ -20,9 +20,14 @@ Steps for seting up applicaton on physical device:
 ## Services
 ### Identity
 ### Restaurants
+It manages dishes and restaurants. 
+Enables us to manipulates dishes and restaurants (CRUD operations for dishes and restaurants, and others that we need).
+Has a central position in our restaurant ecosystem
+
 ### Basket
-Basket service mages user basket. 
+Basket service manages user basket. 
 It caches dishes that user put in basket with redis. 
 Users can add items in basket, retrive already existing items or delete whole basket.
 When user order contents of the basket are send to Order service and user basket clears.
 ### Order
+An ordering system which enables us to order from restaurants. Uses HTTP protocol to communicate with "Restaurants" microservice.
