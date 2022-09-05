@@ -19,6 +19,11 @@ Steps for setting up applicaton on physical device:
 
 ## Services
 ### Identity
+Microservice responsible for managing security of our project, and giving users one of the following roles:
+* _basic_ - customer of our application. He can only make orders from restaurants.
+* _deliverer_ - delivers meals from restaurants to customers
+* _admin_ - they can add restaurants and meals to our application which customers can order
+
 ### Restaurants
 It manages dishes and restaurants. 
 Enables us to manipulates dishes and restaurants (CRUD operations for dishes and restaurants, and others that we need).
