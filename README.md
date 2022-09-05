@@ -17,6 +17,14 @@ Steps for setting up applicaton on physical device:
 5. In Android/EatRoom/app/src/main/java/com/example/eatroom/AppModule.kt file change 4 url that have value http://10.0.2.2:800x to http://your_ip_adress:800x
 6. Connect phone with usb cable to computer and run project in Android Studion
 
+Steps for running backend:
+1) Clone project
+2) Start Visual Studio and start project from it
+3) Go to appsettings.development.json file for Identity, Restaurants and Order microservices and change Server to localhost
+4) Run migrations for Identity, Restaurants and Order microservices
+5) Change Server in appsettings.development.json for Identity, Restaurants and Order microservices to their previous values
+6) Run project from Visual Studio by setting docker-compose option for "Startap-projects"
+
 ## Services
 ### Identity
 Microservice responsible for managing security of our project, and giving users one of the following roles:
